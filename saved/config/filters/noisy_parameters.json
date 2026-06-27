@@ -1,0 +1,180 @@
+{
+  "noisy_exact": [
+    {
+      "pattern": "/avatar/parameters/VRMode",
+      "sanitize": true
+    },
+    {
+      "pattern": "/avatar/parameters/VF_1.1336.0",
+      "sanitize": true
+    },
+    {
+      "pattern": "/avatar/parameters/VF_3.10.3",
+      "sanitize": true
+    },
+    {
+      "pattern": "/avatar/parameters/VF_2022.3.22f1",
+      "sanitize": true
+    },
+    {
+      "pattern": "/avatar/parameters/VF_N",
+      "sanitize": true
+    },
+    {
+      "pattern": "/avatar/parameters/VF52_SyncDataNum12",
+      "sanitize": true
+    },
+    {
+      "pattern": "/avatar/parameters/VF52_SyncDataNum11",
+      "sanitize": true
+    },
+    {
+      "pattern": "/avatar/parameters/VF52_SyncDataNum10",
+      "sanitize": true
+    },
+    {
+      "pattern": "/avatar/parameters/VF52_SyncDataNum9",
+      "sanitize": true
+    },
+    {
+      "pattern": "/avatar/parameters/VF52_SyncDataNum8",
+      "sanitize": true
+    },
+    {
+      "pattern": "/avatar/parameters/VF52_SyncDataNum7",
+      "sanitize": true
+    },
+    {
+      "pattern": "/avatar/parameters/VF52_SyncDataNum6",
+      "sanitize": true
+    },
+    {
+      "pattern": "/avatar/parameters/VF52_SyncDataNum5",
+      "sanitize": true
+    },
+    {
+      "pattern": "/avatar/parameters/VF52_SyncDataNum4",
+      "sanitize": true
+    },
+    {
+      "pattern": "/avatar/parameters/VF52_SyncDataNum3",
+      "sanitize": true
+    },
+    {
+      "pattern": "/avatar/parameters/VF52_SyncDataNum2",
+      "sanitize": true
+    },
+    {
+      "pattern": "/avatar/parameters/VF52_SyncDataNum1",
+      "sanitize": true
+    },
+    {
+      "pattern": "/avatar/parameters/VF52_SyncDataNum0",
+      "sanitize": true
+    },
+    {
+      "pattern": "/avatar/parameters/VF52_SyncIndex1",
+      "sanitize": true
+    },
+    {
+      "pattern": "/avatar/parameters/VF52_SyncIndex0",
+      "sanitize": true
+    },
+    {
+      "pattern": "/avatar/parameters/VF_1.1339.0",
+      "sanitize": true
+    },
+    {
+      "pattern": "/avatar/parameters/VF53_SyncDataNum8",
+      "sanitize": true
+    },
+    {
+      "pattern": "/avatar/parameters/VF53_SyncDataNum7",
+      "sanitize": true
+    },
+    {
+      "pattern": "/avatar/parameters/VF53_SyncDataNum6",
+      "sanitize": true
+    },
+    {
+      "pattern": "/avatar/parameters/VF53_SyncDataNum5",
+      "sanitize": true
+    },
+    {
+      "pattern": "/avatar/parameters/VF53_SyncDataNum4",
+      "sanitize": true
+    },
+    {
+      "pattern": "/avatar/parameters/VF53_SyncDataNum3",
+      "sanitize": true
+    },
+    {
+      "pattern": "/avatar/parameters/VF53_SyncDataNum2",
+      "sanitize": true
+    },
+    {
+      "pattern": "/avatar/parameters/VF53_SyncDataNum1",
+      "sanitize": true
+    },
+    {
+      "pattern": "/avatar/parameters/VF53_SyncDataNum0",
+      "sanitize": true
+    },
+    {
+      "pattern": "/avatar/parameters/VF53_SyncIndex1",
+      "sanitize": true
+    },
+    {
+      "pattern": "/avatar/parameters/VF53_SyncIndex0",
+      "sanitize": true
+    }
+  ],
+  "noisy_prefixes": [
+    {
+      "pattern": "EyeTrackingActive",
+      "sanitize": true
+    },
+    {
+      "pattern": "ExpressionTrackingActive",
+      "sanitize": true
+    },
+    {
+      "pattern": "LipTrackingActive",
+      "sanitize": true
+    },
+    {
+      "pattern": "LastSynced",
+      "sanitize": true
+    },
+    {
+      "pattern": "/avatar/parameters/Go/",
+      "sanitize": true
+    },
+    {
+      "pattern": "/avatar/parameters/OGB/",
+      "sanitize": true
+    },
+    {
+      "pattern": "/avatar/parameters/OSCm/",
+      "sanitize": true
+    }
+  ],
+  "vrcfury_high_noise": [
+    {
+      "pattern": "Toggle",
+      "sanitize": true
+    },
+    {
+      "pattern": "Blend",
+      "sanitize": true
+    },
+    {
+      "pattern": "Slider",
+      "sanitize": true
+    },
+    {
+      "pattern": "LastSynced",
+      "sanitize": true
+    }
+  ]
+}
