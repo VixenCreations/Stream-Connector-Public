@@ -112,7 +112,7 @@ hr {
 <a href="index.html" class="back-btn back-home">⬅ Back</a>
 <a href="#top" class="back-btn back-top">⬆ Top</a>
 
-<h1 id="top">🤖 Streamer.bot Integration</h1>
+<h1 id="top">Streamer.bot Integration</h1>
 
 <p>
 Stream Connector includes a <strong>native, first-class integration</strong> with Streamer.bot.
@@ -125,7 +125,7 @@ It listens locally, parses events safely, and executes only what you explicitly 
 
 <hr />
 
-<h2>🔌 Connection Overview</h2>
+<h2>Connection Overview</h2>
 
 <table>
 <tr><th>Protocol</th><td>WebSocket</td></tr>
@@ -144,7 +144,7 @@ No funny business.
 
 <hr />
 
-<h2>📡 Subscription Model</h2>
+<h2>Subscription Model</h2>
 
 <p>
 Stream Connector subscribes to Streamer.bot’s <strong>Custom Events</strong> channel.
@@ -164,7 +164,7 @@ Only events explicitly sent by Streamer.bot are processed.
 
 <hr />
 
-<h2>🧱 Event Schema</h2>
+<h2>Event Schema</h2>
 
 <p>All events are normalized before execution:</p>
 
@@ -182,22 +182,22 @@ No surprises.
 
 <hr />
 
-<h2>🧩 Supported Event Types</h2>
+<h2>Supported Event Types</h2>
 
-<h3>🔹 External Hook</h3>
+<h3>External Hook</h3>
 <ul>
   <li>provider</li>
   <li>commandId</li>
   <li>context</li>
 </ul>
 
-<h3>🔹 Twitch Chat</h3>
+<h3>Twitch Chat</h3>
 <ul>
   <li>user</li>
   <li>message</li>
 </ul>
 
-<h3>🔹 Twitch Subscription</h3>
+<h3>Twitch Subscription</h3>
 <ul>
   <li>user</li>
   <li>tier</li>
@@ -205,18 +205,18 @@ No surprises.
   <li>is_gift</li>
 </ul>
 
-<h3>🔹 Twitch Cheer</h3>
+<h3>Twitch Cheer</h3>
 <ul>
   <li>user</li>
   <li>bits</li>
 </ul>
 
-<h3>🔹 OBS Events</h3>
+<h3>OBS Events</h3>
 <ul>
   <li>scene</li>
 </ul>
 
-<h3>🔹 Timer / Button Events</h3>
+<h3>Timer / Button Events</h3>
 <ul>
   <li>timer</li>
   <li>button</li>
@@ -224,7 +224,7 @@ No surprises.
 
 <hr />
 
-<h2>🔁 Execution Flow</h2>
+<h2>Execution Flow</h2>
 
 <pre><code>
 Streamer.bot
@@ -242,7 +242,7 @@ Stream Connector Core
 
 <hr />
 
-<h2>⚙️ Execution Hook</h2>
+<h2>Execution Hook</h2>
 
 <pre><code>
 execute_external_hook(
@@ -265,19 +265,19 @@ This is where:
 
 <hr />
 
-<h2>🔐 Security Model</h2>
+<h2>Security Model</h2>
 
 <ul>
-  <li>✔ Local-only WebSocket</li>
-  <li>✔ No inbound internet access</li>
-  <li>✔ Typed payloads only</li>
-  <li>✔ No eval / exec</li>
-  <li>✔ Graceful failure handling</li>
+  <li>Local-only WebSocket</li>
+  <li>No inbound internet access</li>
+  <li>Typed payloads only</li>
+  <li>No eval / exec</li>
+  <li>Graceful failure handling</li>
 </ul>
 
 <hr />
 
-<h2>🔁 Reconnection Handling</h2>
+<h2>Reconnection Handling</h2>
 
 <ul>
   <li>Automatic reconnect</li>
@@ -288,7 +288,7 @@ This is where:
 
 <hr />
 
-<h2>🛡️ Safety Guarantees</h2>
+<h2>Safety Guarantees</h2>
 
 <ul>
   <li>No remote execution</li>
@@ -300,7 +300,7 @@ This is where:
 
 <hr />
 
-<h2>✅ Summary</h2>
+<h2>Summary</h2>
 
 <p>
 The Streamer.bot integration is:
