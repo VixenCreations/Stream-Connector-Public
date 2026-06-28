@@ -3,6 +3,27 @@ Full version history for Stream Connector. Newest releases first.
 > This log is generated from the changelog shipped inside the app
 > (`saved/changelogs/version.json`). Offline-safe, no telemetry, no cloud.
 
+## v6.10.0
+
+- **Feature:** Per-actuator Interval and Step boxes in the chain editor - each actuator on an Intiface device (for example a Max's vibrator and its air-pump constrict) can be tuned independently.
+- **Feature:** Per-actuator Interval sets a minimum time between commands to that actuator (default 0.5s) - it caps how fast the actuator is driven so slower hardware like air pumps is not overloaded, while a vibrator can update faster. Updates that arrive too quickly are smoothed to the latest value, and stopping always takes effect immediately.
+- **Feature:** Per-actuator Step sets the stepping granularity for the Oscillation and Constrict modes (for example air-pump constrict 1 to 3, vibrator 0 to 20), so a multi-motor toy ramps each motor at its own resolution at the same time.
+- **Feature:** Each actuator's Step box now shows and enforces that actuator's EXACT hardware step count (read live from your connected toy, with a bundled device database covering ~500 devices as a fallback for saved or offline toys) - so you can't set more steps than the hardware actually has.
+- **Feature:** SPS trigger now accepts custom contacts - a Custom box lets you type your own comma-separated OGB/SPS contact names to watch alongside the built-in ones.
+- **Improvement:** Per-actuator interval limiting applies to both the live SPS touch drive and the stepped chain modes.
+- **Improvement:** VixForge Haptics Nexus no longer shows the TikFinity branding icon (it has no streaming sources).
+- **Improvement:** The app now identifies itself by its product name when connecting to external services - Intiface Central, PiShock, VRChat (OSCQuery), and the external API - so the VixForge Haptics Nexus edition shows up as 'VixForge Haptics Nexus' instead of 'Stream Connector'. (OWO is identified by its registered game ID and is unchanged.)
+- **Improvement:** VixForge Haptics Nexus now uses its own Dark Alloy + gold/ember theme; Stream Connector keeps its violet/teal theme.
+- **Bugfix:** Fixed the taskbar icon showing the default Python icon - the installed app now reads its icon from its own executable (where it is baked in per edition during build) and applies it to the correct top-level window, instead of relying on a temporary file that the packaged build did not always unpack.
+- **Bugfix:** Per-actuator Interval is now honored in plain Vibrate mode too - the level is re-asserted at the configured interval so each motor is commanded at its own rate (and kept alive), instead of a single command that the interval never affected.
+- **Bugfix:** Multi-motor toys with several motors of the same type (e.g. a 2-motor vibrator, or a Lovense Edge) now expose EVERY motor individually - previously only the first was shown and driven. Each motor has its own checkbox, interval, and step.
+- **Improvement:** The chain editor's Intiface devices are now collapsible cards (one row per motor) so the list stays tidy even with many devices; already-configured devices open automatically.
+- **Bugfix:** Per-device Intiface settings (mode, selected actuators, motion params, and the new per-actuator interval/step) now persist correctly across restarts - they were previously being discarded on load.
+- **Bugfix:** Fixed VRChat / OSCQuery apps failing to connect to us ('Could not make new OscClient'). The OSCQuery web service is now started and confirmed listening before it is advertised, automatically uses a free port if the default is busy, and survived request errors gracefully.
+- **Bugfix:** Fixed the advertised OSC port - VRChat is now told to send OSC to the port we actually listen on, so avatar parameters arrive reliably once connected.
+- **Dev:** Interval limiting is a coalescing trailing throttle at the driver level (_drive_one_scalar / _flush_actuator); stop paths clear pending sends so a release is never undone.
+- **Dev:** Application version metadata bumped to 6.10.0 across the executable manifest and version info.
+
 ## v6.9.0
 
 - **Feature:** New SPS/OGB live-touch trigger - VRChat SPS/OGB contact parameters now drive your devices in real time based on where and how much you are being touched.

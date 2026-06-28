@@ -35,6 +35,24 @@ It is designed to:
 
 ---
 
+## Editions
+
+Stream Connector ships in two editions built from the same engine:
+
+- **Stream Connector** - the full toolkit described above: TikTok Live, Streamer.bot
+  (Twitch, YouTube, and Kick), VRChat OSC, PiShock, Intiface and Bluetooth devices, OwO,
+  the external HTTP API, and the chain system.
+- **VixForge Haptics Nexus** - a haptics-focused edition for VRChat. It keeps VRChat OSC and
+  OSCQuery, SPS / OGB live-touch, Intiface and Bluetooth devices, PiShock, OwO, and the full
+  chain system, but leaves out the livestreaming sources (no TikTok, TikFinity, or
+  Streamer.bot). It is for people who only want VRChat touch driving real devices - a lighter,
+  focused interface with its own dark-alloy theme.
+
+Both editions share the same chains, device support, and SPS engine; the Haptics Nexus simply
+hides the streaming layer.
+
+---
+
 ## Design principles
 
 - No forced workflows
