@@ -320,6 +320,197 @@ a.card:hover {
 .docs-pager .label { display: block; font-size: 0.75rem; color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.06em; }
 .docs-pager .next { text-align: right; }
 
+/* Anchored headings clear the sticky header when jumped to. */
+.prose :is(h1, h2, h3, h4) { scroll-margin-top: 84px; }
+.changelog-prose :is(h1, h2, h3) { scroll-margin-top: 144px; }
+
+/* ---------- Changelog controls ---------- */
+.changelog-controls {
+  position: sticky;
+  top: 62px;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 12px 14px;
+  margin: 0 0 26px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: rgba(11, 12, 16, 0.82);
+  backdrop-filter: blur(10px);
+}
+.changelog-controls label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-faint);
+}
+.changelog-controls select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: var(--bg-elev);
+  color: var(--text);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  padding: 8px 34px 8px 12px;
+  font: inherit;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23a6a9b6' stroke-width='3'><path d='M6 9l6 6 6-6'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+}
+.changelog-controls select:hover,
+.changelog-controls select:focus { border-color: var(--accent); outline: none; }
+.changelog-count { margin-left: auto; font-size: 0.85rem; color: var(--text-faint); }
+
+.back-to-top {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 60;
+  padding: 10px 15px;
+  border-radius: 999px;
+  border: 1px solid var(--border-strong);
+  background: rgba(20, 20, 26, 0.9);
+  color: var(--text);
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease, background 0.15s ease, color 0.15s ease;
+}
+.back-to-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+.back-to-top:hover {
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: #fff;
+  border-color: transparent;
+}
+
+/* ---------- Roadmap ---------- */
+.roadmap { font-size: 1rem; color: var(--text); }
+.roadmap > .lead { color: var(--text-dim); font-size: 1.05rem; margin: 0 0 22px; }
+.roadmap h2 {
+  font-size: 1.45rem;
+  letter-spacing: -0.01em;
+  margin: 40px 0 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+.roadmap h3 { font-size: 1.12rem; margin: 0; letter-spacing: -0.01em; }
+
+.roadmap-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 20px;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-card);
+}
+.legend-item { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; }
+.legend-note { color: var(--text-faint); }
+
+.status-badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+.status-planned { color: #c9bbff; background: rgba(123, 92, 255, 0.16); border-color: rgba(123, 92, 255, 0.4); }
+.status-progress { color: #ffd591; background: rgba(255, 176, 32, 0.15); border-color: rgba(255, 176, 32, 0.4); }
+.status-exploring { color: var(--text-dim); background: rgba(255, 255, 255, 0.06); border-color: var(--border-strong); }
+.status-shipped { color: #7ee2b0; background: rgba(53, 208, 127, 0.14); border-color: rgba(53, 208, 127, 0.4); }
+
+.roadmap-timeline {
+  list-style: none;
+  margin: 0 0 8px;
+  padding: 0 0 0 24px;
+  position: relative;
+}
+.roadmap-timeline::before {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: linear-gradient(var(--accent), var(--accent-2));
+  opacity: 0.5;
+}
+.roadmap-item {
+  position: relative;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-card);
+  padding: 18px 20px;
+  margin: 0 0 16px;
+}
+.roadmap-item::before {
+  content: '';
+  position: absolute;
+  left: -23px;
+  top: 22px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  box-shadow: 0 0 10px var(--accent-soft);
+}
+.rm-head { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin: 0 0 10px; }
+.rm-date {
+  margin-left: auto;
+  font-size: 0.82rem;
+  color: var(--text-faint);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 2px 10px;
+  white-space: nowrap;
+}
+.rm-summary { color: var(--text-dim); margin: 0 0 10px; }
+.rm-points, .ms-points { margin: 0; padding-left: 20px; color: var(--text-dim); }
+.rm-points li, .ms-points li { margin: 4px 0; }
+.rm-points li::marker, .ms-points li::marker { color: var(--accent); }
+
+.milestones { list-style: none; margin: 0 0 8px; padding: 0; }
+.milestone {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-card);
+  padding: 16px 18px;
+  margin: 0 0 12px;
+}
+.ms-head { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin: 0 0 8px; }
+.ms-version {
+  font-family: ui-monospace, "SF Mono", "Cascadia Code", Consolas, monospace;
+  font-weight: 800;
+  color: #fff;
+  background: var(--accent-soft);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 2px 10px;
+  font-size: 0.9rem;
+}
+.ms-title { font-weight: 700; }
+.roadmap-foot {
+  color: var(--text-faint);
+  font-size: 0.92rem;
+  margin-top: 26px;
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+}
+
 /* ---------- Responsive ---------- */
 @media (max-width: 880px) {
   .docs-shell { grid-template-columns: 1fr; padding-top: 22px; }
@@ -335,4 +526,9 @@ a.card:hover {
   .nav { gap: 2px; }
   .nav a { padding: 6px 8px; font-size: 0.85rem; }
   .hero { padding: 56px 0 36px; }
+  .roadmap-timeline { padding-left: 20px; }
+  .roadmap-item::before { left: -19px; }
+  .rm-date, .ms-title { margin-left: 0; }
+  .changelog-count { margin-left: 0; width: 100%; }
+  .back-to-top { right: 14px; bottom: 14px; }
 }

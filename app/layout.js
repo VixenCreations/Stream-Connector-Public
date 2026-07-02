@@ -30,6 +30,7 @@ export default function RootLayout({ children }) {
             </Link>
             <nav className="nav">
               <Link href="/docs">Docs</Link>
+              <Link href="/docs/roadmap">Roadmap</Link>
               <a href={SITE.links.wiki} target="_blank" rel="noopener noreferrer">Wiki</a>
               <a href={SITE.links.vrchat} target="_blank" rel="noopener noreferrer">VRChat</a>
               <a href={SITE.links.repo} target="_blank" rel="noopener noreferrer">GitHub</a>

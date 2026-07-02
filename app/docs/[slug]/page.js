@@ -1,9 +1,17 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { getDoc, getDocSlugs, getDocMeta, getGroupedDocs } from '@/lib/docs.mjs';
+import {
+  getDoc,
+  getAllDocSlugs,
+  getDocMeta,
+  getGroupedDocs,
+  getChangelogVersions,
+} from '@/lib/docs.mjs';
+import Roadmap from '@/components/Roadmap';
+import ChangelogControls from '@/components/ChangelogControls';
 
 export function generateStaticParams() {
-  return getDocSlugs().map((slug) => ({ slug }));
+  return getAllDocSlugs().map((slug) => ({ slug }));
 }
 
 export function generateMetadata({ params }) {
@@ -17,13 +25,16 @@ function orderedDocs() {
 }
 
 export default function DocPage({ params }) {
-  const doc = getDoc(params.slug);
+  const meta = getDocMeta(params.slug);
+  const doc = meta.virtual ? { ...meta, html: null } : getDoc(params.slug);
   if (!doc) notFound();
 
   const ordered = orderedDocs();
   const idx = ordered.findIndex((d) => d.slug === doc.slug);
   const prev = idx > 0 ? ordered[idx - 1] : null;
   const next = idx >= 0 && idx < ordered.length - 1 ? ordered[idx + 1] : null;
+
+  const versions = doc.slug === 'changelog' ? getChangelogVersions() : [];
 
   return (
     <article>
@@ -36,7 +47,16 @@ export default function DocPage({ params }) {
         {doc.description ? <p className="lead">{doc.description}</p> : null}
       </div>
 
-      <div className="prose" dangerouslySetInnerHTML={{ __html: doc.html }} />
+      {doc.slug === 'changelog' ? <ChangelogControls versions={versions} /> : null}
+
+      {meta.virtual && doc.slug === 'roadmap' ? (
+        <Roadmap />
+      ) : (
+        <div
+          className={doc.slug === 'changelog' ? 'prose changelog-prose' : 'prose'}
+          dangerouslySetInnerHTML={{ __html: doc.html }}
+        />
+      )}
 
       <nav className="docs-pager">
         {prev ? (

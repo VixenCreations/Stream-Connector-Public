@@ -99,10 +99,12 @@ export default function HomePage() {
             <p>
               Stream Connector is currently being rebuilt and is not offered as a public product at
               this time. There is no public download or storefront listing. This site documents the
-              current architecture and feature set while development continues.
+              current architecture and feature set while development continues. The public
+              re-release and what is landing next are tracked on the roadmap.
             </p>
             <div className="hero-actions">
-              <Link href="/docs" className="btn primary">Browse the Docs</Link>
+              <Link href="/docs/roadmap" className="btn primary">See the Roadmap</Link>
+              <Link href="/docs" className="btn">Browse the Docs</Link>
               <a href={SITE.links.vrchat} className="btn" target="_blank" rel="noopener noreferrer">VRChat Group</a>
               <a href={SITE.links.repo} className="btn" target="_blank" rel="noopener noreferrer">GitHub</a>
             </div>
