@@ -27,7 +27,7 @@ export default function Roadmap() {
             <div className="rm-head">
               <h3>{item.title}</h3>
               <StatusBadge status={item.status} />
-              <span className="rm-date">Release date: {item.date}</span>
+              {item.date ? <span className="rm-date">Release date: {item.date}</span> : null}
             </div>
             <p className="rm-summary">{item.summary}</p>
             {item.points?.length ? (
