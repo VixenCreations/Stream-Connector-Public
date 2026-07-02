@@ -1,7 +1,33 @@
 Full version history for Stream Connector. Newest releases first.
 
-> This log is generated from the changelog shipped inside the app
-> (`saved/changelogs/version.json`). Offline-safe, no telemetry, no cloud.
+> This log mirrors the changelog shipped inside the app (Docs → Changelog).
+> Offline-safe, no telemetry, no cloud.
+
+## v6.12.0
+
+- **Improvement:** Logs now keep their history across sessions instead of being wiped on every launch - each run is separated by a 'session start' marker, so you can review what happened on previous runs. The log database is capped so it stays small and fast.
+- **Improvement:** On VixForge Haptics Nexus the chain buttons now use the edition's gold / ember theme instead of the violet Stream Connector colour, so the whole window matches.
+- **Bugfix:** The Windows taskbar and title-bar icon now shows the app icon reliably (reverted to the approach that always worked).
+- **Security:** Your saved PiShock devices are now always kept in the encrypted local database - the app no longer writes a plain-text copy under saved/config/devices.
+- **Housekeeping:** The app no longer creates an unused saved/changelogs folder (the changelog lives in the Docs page you are reading).
+- **Security:** Reduced several behaviours that antivirus and malware-sandbox tools flag - fewer repeated overwrites of your saved files, and no local-network broadcasts unless a feature that needs one is explicitly enabled.
+- **Dev:** Application version bumped to 6.12.0 across the executable manifest and version info.
+
+## v6.11.0
+
+- **Feature:** VixForge Haptics Nexus now requires a one-time license activation. Enter the email and license key from your purchase under Configuration → License; the app opens but nothing fires (no OSC, PiShock, Intiface, or OwO output) until the license is valid.
+- **Feature:** A License indicator was added to the status bar (Haptics Nexus only) showing Licensed / Unlicensed at a glance.
+- **Feature:** After activating once online, the app keeps working offline for up to 14 days between successful online re-checks, so a dropped connection won't lock you out. A refunded or disputed purchase deactivates on the next online check.
+- **Security:** Your stored settings now live in an encrypted local database (saved/config/secure.db) instead of plain-text files. Your PiShock credentials, saved PiShock/Intiface devices, avatar list, and license are encrypted at rest and tied to your machine. Existing user.json / device files are imported automatically and the old plain-text copies are renamed to *.migrated.
+- **Improvement:** Activation runs on a background thread so the window never freezes while it checks your key, and startup no longer waits on the network to open.
+- **Docs:** Added a License & Usage Terms page (single-user EULA, no-refunds policy, and usage guidelines for the paid Haptics Nexus edition) and updated the Security & Licensing page to reflect the license activation.
+- **Dev:** Application version bumped to 6.11.0 across the executable manifest and version info.
+
+## v6.10.1
+
+- **Improvement:** The OSC status indicator now shows 'Connected' as soon as VRChat is found through OSCQuery, instead of only while avatar parameters happen to be streaming in - so a live VRChat link is reflected even when you are sitting in a menu or otherwise not sending steady OSC traffic.
+- **Improvement:** The indicator drops back out of 'Connected' when VRChat goes away (its OSCQuery service disappears) and comes back automatically when VRChat returns, so the status no longer gets stuck showing connected after you close VRChat.
+- **Dev:** Track VRChat presence via zeroconf add/remove of its _oscjson._tcp service (new vrchat_lost event); the OSC heartbeat treats an OSCQuery-confirmed link as connected in addition to recent inbound traffic.
 
 ## v6.10.0
 
