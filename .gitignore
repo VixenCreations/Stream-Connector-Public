@@ -17,3 +17,8 @@
 *.tsbuildinfo
 .vercel
 /.claude
+
+# Claude Code project-local rules (never commit)
+CLAUDE.md
+CLAUDE.local.md
+.claude/
