@@ -3,6 +3,16 @@ Full version history for Stream Connector. Newest releases first.
 > This log mirrors the changelog shipped inside the app (Docs → Changelog).
 > Offline-safe, no telemetry, no cloud.
 
+## v7.0.0
+
+- **Feature:** New Custom OSC trigger - point a chain at ANY incoming OSC parameter (not just the built-in SPS / OGB touch contacts) and drive every enabled output from it. Add a row per parameter with a '+ Add Parameter' button, just like the pattern editor.
+- **Feature:** Each Custom OSC parameter row can be Continuous (scales all enabled outputs - Intiface, OSC, PiShock, OwO - to the live value) or Threshold (fires the whole chain once when the value crosses, then re-arms when it drops).
+- **Feature:** Continuous rows have their own Deadzone (below this value the row contributes nothing) and Scale (multiplier applied before driving, clamped to 0-1), so you can shape how each parameter feels.
+- **Feature:** New per-device Motors mode for Intiface toys with more than one actuator - choose Selected (only the checked actuators), All Motors (every actuator on the device), or Random Motors (a random subset of the checked actuators, re-rolled each time the chain fires or a live touch begins) for more varied experiences.
+- **Bugfix:** The Clear Queue button now also stops the chain that is currently running - it cancels the running chain's remaining steps, halts continuous SPS / Custom OSC live-drive, and stops all Intiface / PiShock / OwO output. Previously it only emptied the pending queue and left the active chain playing.
+- **Dev:** Custom OSC trigger uses a dedicated watch path that bypasses the noise/rate filters (like SPS) so rapidly-changing parameters are never auto-muted; running chains observe a cancel generation so Clear interrupts them deterministically even with several chains in flight.
+- **Dev:** Application version bumped to 7.0.0 across the executable manifest and version info. Per the updated versioning policy, milestone / roadmap feature additions now bump the MAJOR version.
+
 ## v6.12.0
 
 - **Improvement:** Logs now keep their history across sessions instead of being wiped on every launch - each run is separated by a 'session start' marker, so you can review what happened on previous runs. The log database is capped so it stays small and fast.
@@ -374,18 +384,18 @@ Full version history for Stream Connector. Newest releases first.
 
 ## v6.0.0
 
-- **Feature:** Shock Together – Collaborate with friends and experience synchronized live shocks!
-- **Feature:** New Trigger Type: Diamond Count – Activate chains based on the total diamonds received.
-- **Feature:** Precision Filtering – Set exact values and thresholds for refined trigger control.
-- **Feature:** Gift Count Threshold – Fire chains only when specific gift counts are met.
-- **Feature:** Gifter Level, Subscriber, and Moderator Filters – Limit triggers to specific user roles.
+- **Feature:** Shock Together - Collaborate with friends and experience synchronized live shocks!
+- **Feature:** New Trigger Type: Diamond Count - Activate chains based on the total diamonds received.
+- **Feature:** Precision Filtering - Set exact values and thresholds for refined trigger control.
+- **Feature:** Gift Count Threshold - Fire chains only when specific gift counts are met.
+- **Feature:** Gifter Level, Subscriber, and Moderator Filters - Limit triggers to specific user roles.
 - **Improvement:** General UI cleanup for a smoother and more intuitive experience.
 - **Improvement:** Internal filter system refactored to minimize log spam and boost efficiency.
 - **Improvement:** Enhanced PiShock integration with smarter logic and better reliability.
 - **Improvement:** Tooltips added across the editor to guide you through each feature effortlessly.
 - **Improvement:** Chain Runner now operates on a dedicated handler for significantly faster execution.
 - **Improvement:** Controls Builder has its own handler, boosting startup and UI responsiveness.
-- **Improvement:** Optimized startup performance when using heavy avatars – no more slowdowns.
+- **Improvement:** Optimized startup performance when using heavy avatars - no more slowdowns.
 - **Improvement:** TikTok gift mapping updated for improved accuracy and future compatibility.
 - **Improvement:** Importing Chains now converts pishock devices automatically but you must reselect your device when importing.
 - **Fix:** 'Reset Before' logic now functions correctly during chain execution.

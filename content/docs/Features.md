@@ -71,6 +71,7 @@ Stream Connector supports the full Buttplug command surface, not just basic vibr
 - Rotation, with an optional alternating direction
 - Multi-actuator devices driven together (for example, constrict and vibrate at once)
 - Per-device mode, intensity, and duration in the chain editor
+- Per-device motor selection on multi-actuator toys: drive only the actuators you pick, all of them, or a random subset that re-rolls each trigger (Selected / All Motors / Random Motors)
 - Buttplug v4 protocol, with automatic v3 fallback for older Intiface servers
 - Live battery readout and on-demand device rescan
 
@@ -99,6 +100,21 @@ Stream Connector converts that into live device output, in real time and scaled 
 - Threshold mode fires the full chain once when the touch crosses a configured level, then re-arms
 - Per-zone include and exclude, plus contact-type selection
 - On the live-touch path, PiShock is limited to vibrate and is never live-shocked, by design
+
+---
+
+## Custom OSC trigger
+
+Beyond the built-in SPS / OGB contacts, a chain can listen to **any** incoming OSC parameter and use
+it as a live input - point it at your own avatar or world parameters and drive every enabled output
+from them.
+
+- Add as many parameters as you like, one row each (like the pattern editor)
+- Each row is Continuous (scales the outputs to the live value) or Threshold (fires the whole chain
+  once when the value crosses, then re-arms)
+- Per-row deadzone and scale to shape how each parameter feels
+- Fans out to every enabled integration at once: Intiface, OSC parameters, PiShock, and the OwO vest
+- Watched parameters bypass the noise filters, so fast-changing values are never auto-muted
 
 ---
 
