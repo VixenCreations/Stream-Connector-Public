@@ -50,8 +50,7 @@ saved/config/
 │   ├── devices.json
 │   └── intiface_devices.json
 ├── filters/
-│   ├── noisy_parameters.json
-│   └── nuclear.json
+│   └── filters.db      (noisy + nuclear OSC filters; edit via Manage Filters)
 ├── owo/
 └── routing/
     └── endpoints.json

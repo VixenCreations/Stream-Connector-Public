@@ -3,6 +3,14 @@ Full version history for Stream Connector. Newest releases first.
 > This log mirrors the changelog shipped inside the app (Docs → Changelog).
 > Offline-safe, no telemetry, no cloud.
 
+## v7.2.0
+
+- **Feature:** New Manage Filters window - open it from the OSC Controls tab (the 'Manage Filters' button next to 'Filter Selected') to browse, search, add, and remove the parameter filters the app uses to mute chatty or tracking-only OSC. Pick a category (three Noisy buckets and two Nuclear buckets), search within it, add a pattern with Enter, remove selected rows, and double-click a noisy row to toggle whether it is sanitized. Changes take effect right away, no restart needed.
+- **Improvement:** Your OSC filters now live in a single filters database (filters.db) instead of two separate JSON files. This means fewer disk reads and writes while the app is running (nothing is re-read from disk on every incoming OSC message anymore), which keeps things a touch lighter and reduces the app's on-disk footprint. Your existing filter files are imported automatically on first launch and kept as .migrated backups.
+- **Bugfix:** Backup (.bak) copies of your chain and control-layout files are now saved into their proper 'backup' folders (for example VixForge Haptics Nexus\saved\controls\chains\backup) instead of being dropped next to the live files. Your working folders stay clean.
+- **Dev:** New FilterStore (plaintext SQLite, WAL) replaces noisy_parameters.json / nuclear.json; the noisy filter is now cache-first (removed a per-message getmtime syscall from the OSC hot path) and the nuclear filter no longer runs a watchdog file-watcher (a module-level reload hook is used instead). New _backup_file() helper routes all .bak copies into sibling backup/ folders with timestamped names.
+- **Dev:** Application version bumped to 7.2.0 across the executable manifest and version info (MINOR - feature addition).
+
 ## v7.1.0
 
 - **Feature:** Discord Rich Presence - while the app is open, your Discord status can show that you are running Stream Connector (or VixForge Haptics Nexus), with the product logo, an elapsed timer, a live status line (Idle / Waiting for VRChat / Connected to VRChat), and Website + Join Discord buttons. It is completely optional and best-effort: if Discord is not running, nothing changes and no error is shown.
