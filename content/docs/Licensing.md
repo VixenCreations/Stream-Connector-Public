@@ -1,36 +1,41 @@
-**Last Updated:** 07-06-2026 &nbsp;•&nbsp; **Licensor:** VixForge Interactive
+**Last Updated:** 07-07-2026 &nbsp;•&nbsp; **Licensor:** VixForge Interactive
 
 This page covers **licensing** for the two editions of the software and the End User License
-Agreement (EULA) for the paid edition. For the rules of using the software see the
-[Terms of Service](/docs/terms-of-service); for how your data is handled see the
-[Privacy Policy](/docs/privacy-policy).
+Agreement (EULA) that governs them. For pricing and tiers see the [Pricing](/docs/pricing) page; for
+the rules of using the software see the [Terms of Service](/docs/terms-of-service); for how your data
+is handled see the [Privacy Policy](/docs/privacy-policy).
 
-> **BY PURCHASING, DOWNLOADING, ACTIVATING, OR USING THE PAID PRODUCT, YOU ACKNOWLEDGE THAT YOU HAVE
-> READ THIS AGREEMENT, UNDERSTAND IT, AND AGREE TO BE BOUND BY IT. IF YOU DO NOT AGREE, DO NOT
-> PURCHASE, DOWNLOAD, ACTIVATE, OR USE THE PRODUCT.**
+> **BY PURCHASING, DOWNLOADING, ACTIVATING, OR USING THE PRODUCT, YOU ACKNOWLEDGE THAT YOU HAVE READ
+> THIS AGREEMENT, UNDERSTAND IT, AND AGREE TO BE BOUND BY IT. IF YOU DO NOT AGREE, DO NOT PURCHASE,
+> DOWNLOAD, ACTIVATE, OR USE THE PRODUCT.**
 
 ---
 
-## Two editions, two models
+## Two editions, one license model
 
-The software ships in two editions built from the same engine, under two different license models:
+The software ships in two editions built from the same engine - **Stream Connector** (the full
+toolkit) and **VixForge Haptics Nexus** (the haptics-focused edition). Both are **paid products under
+the same single-user license model**, each with a feature-limited **Free Tier** plus paid **Pro** and
+**Lifetime** tiers (see [Pricing](/docs/pricing)).
 
-- **Stream Connector** (the full edition) is **free, local, and permissive** - a MIT-style model. No
-  keys, no tiers, no activation, no server deciding what you are "allowed" to do. Free to use, modify,
-  and redistribute, for personal or commercial projects. The purchase terms in the EULA below do
-  **not** apply to it.
-- **VixForge Haptics Nexus** (the paid edition) is a **paid product with a single-user license**. It
-  requires a one-time activation (a purchase email + license key), after which it runs locally like
-  everything else. The EULA below governs it.
+- A paid license requires a one-time activation (a purchase email + license key), after which the
+  software runs locally like everything else.
+- The two editions are **licensed and billed separately**; a license for one does not cover the other.
+- The EULA below governs both editions.
+
+> **Stream Connector is not yet available for purchase.** Its store listings and activation are still
+> being finalized, so its pricing and paid tiers are **provisional and subject to change at release**
+> (see [Pricing](/docs/pricing)).
 
 Either way, the software runs on your machine, under your control.
 
 ---
 
-## End User License Agreement (VixForge Haptics Nexus)
+## End User License Agreement
 
 This Agreement is between you and **VixForge Interactive** ("Licensor", "we", "us", or "our") and
-covers **VixForge Haptics Nexus** (the "Digital Product" or "Software").
+covers the paid **Stream Connector** and **VixForge Haptics Nexus** editions (each, the "Digital
+Product" or "Software").
 
 ### 1. License Grant & Permitted Use
 

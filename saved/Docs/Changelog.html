@@ -154,7 +154,7 @@ const CHANGELOG = {
     ],
     "7.1.0": [
         "FEATURE: Discord Rich Presence - while the app is open, your Discord status can show that you are running Stream Connector (or VixForge Haptics Nexus), with the product logo, an elapsed timer, a live status line (Idle / Waiting for VRChat / Connected to VRChat), and Website + Join Discord buttons. It is completely optional and best-effort: if Discord is not running, nothing changes and no error is shown.",
-        "IMPROVEMENT: The Rich Presence is edition-aware - each edition uses its own Discord app and its own logo, so the free Stream Connector and the paid VixForge Haptics Nexus each appear with the correct name and icon.",
+        "IMPROVEMENT: The Rich Presence is edition-aware - each edition uses its own Discord app and its own logo, so Stream Connector and VixForge Haptics Nexus each appear with the correct name and icon.",
         "FEATURE: Discord Rich Presence can be turned on or off in the app under Configuration → Edit Config with the 'Show Discord Rich Presence' checkbox; the change takes effect immediately. You can also hide it from Discord's own Activity Privacy settings, or simply not run Discord.",
         "PRIVACY: Rich Presence talks only to your local Discord app over its normal on-device link; it sends no data to VixForge and adds no network calls. The status text is generic (it never includes your avatar, chains, or device details).",
         "DEV: New DiscordPresence worker (pypresence over the local Discord IPC pipe) runs on its own thread; edition-aware DISCORD_CLIENT_ID and DISCORD_LARGE_IMAGE constants; the website link is shared via a single WEBSITE_URL constant used by both the presence button and the in-app icon bar.",

@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Service Level Agreement</title>
+
+  <style>
+    :root {
+      color-scheme: light dark;
+      --accent: #ff3b3b;
+      --border: rgba(127,127,127,.35);
+    }
+
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      line-height: 1.6;
+      max-width: 980px;
+      margin: 32px auto;
+      padding: 0 18px;
+    }
+
+    h1, h2 {
+      margin-top: 2em;
+      border-left: 4px solid var(--accent);
+      padding-left: 12px;
+    }
+
+    ul, ol { margin-left: 1.2em; }
+    li { margin: 0.4em 0; }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 32px 0;
+    }
+
+    table { border-collapse: collapse; width: 100%; margin: 16px 0; }
+    th, td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; vertical-align: top; }
+    th { background: rgba(127,127,127,.12); }
+
+    .notice {
+      border: 1px solid var(--accent);
+      border-left: 4px solid var(--accent);
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin: 18px 0;
+      background: rgba(255,59,59,0.08);
+    }
+
+    .docs-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 12px;
+      align-items: center;
+      padding: 12px 14px;
+      margin-bottom: 20px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: rgba(30,30,30,0.6);
+      backdrop-filter: blur(6px);
+    }
+
+    .docs-nav a {
+      padding: 6px 10px;
+      border-radius: 8px;
+      color: inherit;
+      border: 1px solid transparent;
+      text-decoration: none;
+      transition: all 0.15s ease;
+    }
+
+    .docs-nav a:hover {
+      background: rgba(100,100,100,0.2);
+      border-color: var(--border);
+    }
+
+    .back-btn {
+      position: fixed;
+      bottom: 24px;
+      padding: 10px 14px;
+      font-size: 14px;
+      font-weight: 700;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: rgba(20,20,20,0.9);
+      color: #fff;
+      text-decoration: none;
+      backdrop-filter: blur(6px);
+      transition: all 0.15s ease;
+      z-index: 9999;
+    }
+
+    .back-home { left: 24px; }
+    .back-top { right: 24px; }
+
+    .back-btn:hover {
+      background: rgba(80,80,80,0.9);
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+
+<body>
+
+<nav class="docs-nav">
+  <a href="index.html">Home</a>
+  <a href="README.html">Overview</a>
+  <a href="Installation.html">Install</a>
+  <a href="Features.html">Features</a>
+  <a href="Additional-Uses.html">Additional Uses</a>
+  <a href="Changelog.html">Changelog</a>
+  <a href="Security-&-Licensing.html">Security</a>
+  <a href="Pricing.html">Pricing</a>
+  <a href="SLA.html">SLA</a>
+  <a href="FAQ.html">FAQ</a>
+</nav>
+
+<a href="#top" class="back-btn back-top">⬆ Back to Top</a>
+<a href="index.html" class="back-btn back-home">⬅ Home</a>
+
+<h1 id="top">Service Level Agreement</h1>
+
+<p class="meta"><strong>Last Updated:</strong> 07-07-2026 &nbsp;•&nbsp; <strong>Provider:</strong> VixForge Interactive</p>
+
+<p>
+This Service Level Agreement (SLA) defines the support and service commitments for
+<strong>Stream Connector</strong> and <strong>VixForge Haptics Nexus</strong>. Each app is licensed
+independently; the terms below apply per-app and per-account. For pricing and tiers see the
+<a href="Pricing.html">Pricing</a> page.
+</p>
+
+<div class="notice">
+<strong>This SLA is provisional and subject to change at release.</strong> It is published alongside a
+pricing model that is not yet final, and Stream Connector is not yet available for purchase. Support
+tiers, response targets, and remedies may be adjusted before launch. The version in effect at the time
+of your purchase is authoritative.
+</div>
+
+<div class="notice">
+<strong>Local-first by design.</strong> Both apps run entirely on your own machine. There is no hosted
+backend that stores your data or runs your setup, so this SLA does <strong>not</strong> promise uptime
+for a cloud service you do not depend on. It covers the two things we actually operate -
+<strong>license validation</strong> and <strong>update distribution</strong> - plus our
+<strong>support responsiveness</strong>.
+</div>
+
+<hr />
+
+<h2>Scope of Coverage</h2>
+
+<p><strong>Covered:</strong></p>
+<ul>
+  <li><strong>License validation</strong> - activation and periodic re-checks for paid licenses (processed through our store provider, Gumroad).</li>
+  <li><strong>Update distribution</strong> - availability of update downloads and release artifacts we publish.</li>
+  <li><strong>Support responsiveness</strong> - the initial-response and triage targets defined below, by tier.</li>
+</ul>
+
+<p><strong>Not covered:</strong></p>
+<ul>
+  <li>Your hardware, local network, or operating system.</li>
+  <li>Third-party services and integrations (VRChat, Intiface, PiShock, OwO, Streamer.bot, TikTok, Discord, and Gumroad), governed by their own terms and availability.</li>
+  <li>Misconfiguration by the user, or features explicitly marked experimental or beta.</li>
+  <li>The moment-to-moment operation of the app on your machine, which runs locally and is not a service we host.</li>
+</ul>
+
+<hr />
+
+<h2>Support Tiers and Channels</h2>
+<ul>
+  <li><strong>Free Tier</strong> - community forum and public Discord channels. No guaranteed response times.</li>
+  <li><strong>Pro (monthly or annual)</strong> - priority Discord support and email Vixenlicious@outlook.com, with the guaranteed initial-response targets below.</li>
+  <li><strong>Lifetime</strong> - email Vixenlicious@outlook.com plus on-call escalation for critical incidents, with the elevated targets below.</li>
+</ul>
+
+<hr />
+
+<h2>Severity Definitions</h2>
+<ul>
+  <li><strong>Severity 1 - Critical.</strong> Core functionality unusable, activation or update distribution down for a paid user, or a safety-relevant issue.</li>
+  <li><strong>Severity 2 - High.</strong> Significant feature degradation affecting many users; a major workflow is blocked but a workaround exists.</li>
+  <li><strong>Severity 3 - Medium.</strong> Partial loss of functionality; single-user impact or a non-critical feature broken.</li>
+  <li><strong>Severity 4 - Low.</strong> Cosmetic issues, documentation requests, feature requests, or general questions.</li>
+</ul>
+
+<hr />
+
+<h2>Initial-Response Targets</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tier</th>
+      <th>Sev 1 Critical</th>
+      <th>Sev 2 High</th>
+      <th>Sev 3 Medium</th>
+      <th>Sev 4 Low</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Pro</strong></td>
+      <td>Response within 1 hour; workaround plan within 4 hours</td>
+      <td>Response within 4 hours; plan within 24 hours</td>
+      <td>Response within 24 hours; plan within 72 hours</td>
+      <td>Response within 72 hours</td>
+    </tr>
+    <tr>
+      <td><strong>Lifetime</strong></td>
+      <td>On-call acknowledgement within 30 minutes; mitigation plan within 2 hours</td>
+      <td>Response within 2 hours; plan within 12 hours</td>
+      <td>Response within 12 hours; plan within 48 hours</td>
+      <td>Response within 48 hours</td>
+    </tr>
+    <tr>
+      <td><strong>Free</strong></td>
+      <td>Community response only</td>
+      <td>Community response only</td>
+      <td>Community response only</td>
+      <td>Community response only</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>
+These are <strong>response</strong> targets, not resolution guarantees. Resolution time depends on the
+issue's complexity, reproducibility, and the fix required. For Severity 1 incidents we commit to
+working continuously until a mitigation or workaround is in place.
+</p>
+
+<hr />
+
+<h2>License Validation and Update Availability</h2>
+
+<p>Because the apps run locally, they keep working during a temporary outage of our licensing or update services:</p>
+<ul>
+  <li><strong>Activation grace period.</strong> After a successful activation, a paid license continues to operate offline for a grace period between successful online re-checks, so a brief validation outage does not stop a licensed user from working. The app re-verifies when a connection is available.</li>
+  <li><strong>Best-effort availability.</strong> We operate license validation and update distribution on a best-effort basis and work to keep planned downtime short and announced. We do not commit to a fixed uptime percentage for these services, and third-party providers we rely on (such as Gumroad) are outside our control.</li>
+</ul>
+
+<hr />
+
+<h2>Incident Communication</h2>
+<ul>
+  <li><strong>Reporting.</strong> Open a ticket via email Vixenlicious@outlook.com or the priority Discord channel (Pro and Lifetime). Include timestamps, logs, and reproduction steps.</li>
+  <li><strong>Status updates.</strong> For a Severity 1 incident affecting our licensing or update services, we will post status updates until mitigation. For Severity 2 incidents we will update periodically until resolved.</li>
+  <li><strong>Post-incident summary.</strong> For a Severity 1 incident affecting paid subscribers, a written summary will be provided within 7 business days.</li>
+</ul>
+
+<hr />
+
+<h2>Remedies</h2>
+
+<p>
+If an outage of <strong>our</strong> license-validation or update-distribution services (not your
+hardware, network, or a third-party provider) prevents a paid user from using the Software for an
+extended period, the affected account may request a discretionary service credit. Submit a ticket with
+relevant logs within 14 days. Service credits are the sole remedy under this SLA. Lifetime holders
+receive on-call escalation and prioritized engineering support for critical incidents in place of
+recurring credits.
+</p>
+
+<hr />
+
+<h2>Escalation Path</h2>
+<ol>
+  <li><strong>Support</strong> - initial triage and workaround.</li>
+  <li><strong>Senior engineering</strong> - deeper diagnostics and patch coordination.</li>
+  <li><strong>On-call lead</strong> - engaged for Severity 1; automatic for Lifetime customers, by escalation for Pro.</li>
+  <li><strong>Owner</strong> - final escalation for unresolved critical issues.</li>
+</ol>
+
+<p>Include your ticket ID in all communications.</p>
+
+<hr />
+
+<h2>Maintenance</h2>
+
+<p>
+Planned maintenance to our licensing or update services will be scheduled during low-traffic windows
+and announced in advance via Discord and email where practical. Planned maintenance does not count as
+an incident.
+</p>
+
+<hr />
+
+<h2>How to Request Support</h2>
+<ul>
+  <li><strong>Pro:</strong> priority Discord channel or email Vixenlicious@outlook.com. Include the app name, license email, severity, and reproduction steps.</li>
+  <li><strong>Lifetime:</strong> email Vixenlicious@outlook.com with "ON-CALL ESCALATION" in the subject for critical incidents; include license details and incident data.</li>
+  <li><strong>Free:</strong> community forum and public Discord channels.</li>
+</ul>
+
+<hr />
+
+<p><em>© 2026 VixForge Interactive. This SLA is provisional and subject to change; the version in
+effect at the time of purchase is authoritative.</em></p>
+
+</body>
+</html>

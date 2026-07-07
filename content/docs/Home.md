@@ -1,6 +1,7 @@
-> **Project status:** Stream Connector is in active re-development. It is not currently
-> offered as a public product, and there is no public download or storefront listing.
-> This documentation describes the current architecture and feature set while work continues.
+> **Project status:** Stream Connector is in active development and preparing for release. It is
+> **not yet available for purchase** - store listings and activation are still being finalized, and the
+> [pricing](/docs/pricing) shown is provisional and subject to change. This documentation describes the
+> current architecture and feature set while work continues.
 
 ## The unified toolkit for VRChat, TikTok, and real-time interactivity
 
@@ -49,7 +50,8 @@ Stream Connector ships in two editions built from the same engine:
   focused interface with its own dark-alloy theme.
 
 Both editions share the same chains, device support, and SPS engine; the Haptics Nexus simply
-hides the streaming layer.
+hides the streaming layer. Each edition offers a free tier plus paid Pro and Lifetime tiers, licensed
+and billed separately - see the [Pricing](/docs/pricing) page.
 
 ---
 
@@ -57,7 +59,7 @@ hides the streaming layer.
 
 - No forced workflows
 - No locked ecosystems
-- No cloud dependency
-- No artificial limitations
+- Local-first execution
+- Explicit, repeatable control
 
 The engine is built for creators who want explicit, repeatable control rather than fixed presets.

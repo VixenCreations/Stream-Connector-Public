@@ -1,4 +1,4 @@
-**Last Updated:** 07-06-2026 &nbsp;•&nbsp; **Provider:** VixForge Interactive
+**Last Updated:** 07-07-2026 &nbsp;•&nbsp; **Provider:** VixForge Interactive
 
 This Privacy Policy explains how the **Stream Connector** and **VixForge Haptics Nexus** software
 (the "Software"), provided by **VixForge Interactive** ("we", "us", or "our"), handles information.
@@ -30,7 +30,7 @@ avatar data, chat content, device usage, or any analytics or behavioural profile
 The Software stores the following **only on your machine**, never transmitted to us:
 
 - Your chains, patterns, triggers, OSC controls, and application settings.
-- Saved device references (for example PiShock and Intiface devices) and, for the paid edition, your
+- Saved device references (for example PiShock and Intiface devices) and, for a paid license, your
   license key and purchase email - kept in an **encrypted, machine-bound local database**.
 - Local logs (capped in size) to help you review what the app did. These stay on your device.
 
@@ -40,12 +40,12 @@ You can delete this data at any time by removing the app's saved files or uninst
 
 The Software makes network connections only for features you use:
 
-- **License verification (paid edition only).** VixForge Haptics Nexus contacts the **Gumroad**
-  license API to validate your key at activation and periodically afterward. It sends **only your
-  license key and purchase email** for that check. This is the paid edition's single licensing call;
-  it is not telemetry or analytics. Gumroad's handling of that request is governed by
-  [Gumroad's Privacy Policy](https://gumroad.com/privacy). The free Stream Connector edition makes no
-  licensing calls.
+- **License verification (paid tiers only).** When you activate a paid license (either edition), the
+  Software contacts the **Gumroad** license API to validate your key at activation and periodically
+  afterward. It sends **only your license key and purchase email** for that check. This is the paid
+  tiers' single licensing call; it is not telemetry or analytics. Gumroad's handling of that request is
+  governed by [Gumroad's Privacy Policy](https://gumroad.com/privacy). The free tier makes no licensing
+  calls.
 - **Services and devices you configure.** When you enable them, the Software connects locally or over
   the network to VRChat (OSC / OSCQuery), Intiface Central, PiShock, the OwO vest, Streamer.bot, and
   TikTok Live. These connections are made **at your direction**, and each service's own privacy policy

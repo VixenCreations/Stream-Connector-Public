@@ -1,3 +1,15 @@
+NOTICE - Scope of this license
+
+This repository contains the public website, documentation, and supporting
+materials for VixForge Interactive's products. The MIT license below applies
+ONLY to the website and documentation code in THIS repository. It does NOT apply
+to the Stream Connector or VixForge Haptics Nexus applications themselves - those
+are paid, proprietary products distributed under their own End User License
+Agreement (see the Licensing page in the docs). No right to use, copy, modify,
+redistribute, or sell those products is granted by this file.
+
+----------------------------------------------------------------------
+
 MIT License
 
 Copyright (c) 2026 VixenCreations

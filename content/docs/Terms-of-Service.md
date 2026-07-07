@@ -1,4 +1,4 @@
-**Last Updated:** 07-06-2026 &nbsp;•&nbsp; **Provider:** VixForge Interactive
+**Last Updated:** 07-07-2026 &nbsp;•&nbsp; **Provider:** VixForge Interactive
 
 These Terms of Service ("Terms") govern your use of the **Stream Connector** and **VixForge Haptics
 Nexus** software and related documentation (together, the "Software"), provided by **VixForge
@@ -26,9 +26,10 @@ using it is lawful where you are.
 
 ## 3. License
 
-Your right to use the Software is granted under the [Licensing](/docs/licensing) page - a permissive,
-MIT-style model for the free Stream Connector edition, and a single-user End User License Agreement
-for the paid VixForge Haptics Nexus edition. These Terms apply in addition to that license.
+Your right to use the Software is granted under the [Licensing](/docs/licensing) page - a single-user
+End User License Agreement that governs both the Stream Connector and VixForge Haptics Nexus editions,
+each with a feature-limited free tier and paid tiers (see [Pricing](/docs/pricing)). These Terms apply
+in addition to that license.
 
 ## 4. Acceptable Use
 
@@ -46,7 +47,7 @@ You **may not**:
   **without that person's clear, informed, and ongoing consent**.
 - Use the Software for any unlawful purpose, or to violate the terms of any third-party service or
   device you connect it to.
-- Share, resell, bundle, crack, or circumvent the paid edition or its license, or present the
+- Share, resell, bundle, crack, or circumvent a paid edition, tier, or its license, or present the
   Software, its design, or its code as your own creation (see [Licensing](/docs/licensing)).
 
 ## 5. Your Responsibilities
