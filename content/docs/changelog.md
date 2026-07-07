@@ -3,12 +3,22 @@ Full version history for Stream Connector. Newest releases first.
 > This log mirrors the changelog shipped inside the app (Docs → Changelog).
 > Offline-safe, no telemetry, no cloud.
 
+## v7.1.0
+
+- **Feature:** Discord Rich Presence - while the app is open, your Discord status can show that you are running Stream Connector (or VixForge Haptics Nexus), with the product logo, an elapsed timer, a live status line (Idle / Waiting for VRChat / Connected to VRChat), and Website + Join Discord buttons. It is completely optional and best-effort: if Discord is not running, nothing changes and no error is shown.
+- **Improvement:** The Rich Presence is edition-aware - each edition uses its own Discord app and its own logo, so the free Stream Connector and the paid VixForge Haptics Nexus each appear with the correct name and icon.
+- **Feature:** Discord Rich Presence can be turned on or off in the app under Configuration → Edit Config with the 'Show Discord Rich Presence' checkbox; the change takes effect immediately. You can also hide it from Discord's own Activity Privacy settings, or simply not run Discord.
+- **Privacy:** Rich Presence talks only to your local Discord app over its normal on-device link; it sends no data to VixForge and adds no network calls. The status text is generic (it never includes your avatar, chains, or device details).
+- **Dev:** New DiscordPresence worker (pypresence over the local Discord IPC pipe) runs on its own thread; edition-aware DISCORD_CLIENT_ID and DISCORD_LARGE_IMAGE constants; the website link is shared via a single WEBSITE_URL constant used by both the presence button and the in-app icon bar.
+- **Dev:** Application version bumped to 7.1.0 across the executable manifest and version info (MINOR - feature addition).
+
 ## v7.0.0
 
 - **Feature:** New Custom OSC trigger - point a chain at ANY incoming OSC parameter (not just the built-in SPS / OGB touch contacts) and drive every enabled output from it. Add a row per parameter with a '+ Add Parameter' button, just like the pattern editor.
 - **Feature:** Each Custom OSC parameter row can be Continuous (scales all enabled outputs - Intiface, OSC, PiShock, OwO - to the live value) or Threshold (fires the whole chain once when the value crosses, then re-arms when it drops).
 - **Feature:** Continuous rows have their own Deadzone (below this value the row contributes nothing) and Scale (multiplier applied before driving, clamped to 0-1), so you can shape how each parameter feels.
 - **Feature:** New per-device Motors mode for Intiface toys with more than one actuator - choose Selected (only the checked actuators), All Motors (every actuator on the device), or Random Motors (a random subset of the checked actuators, re-rolled each time the chain fires or a live touch begins) for more varied experiences.
+- **Feature:** New per-device 'Custom' mode for multi-motor toys - give each actuator its own waveform (vibrate, pulse, burst, oscillation, randomized wobble, or constrict) and its own intensity, all running at once, for maximum flexibility.
 - **Bugfix:** The Clear Queue button now also stops the chain that is currently running - it cancels the running chain's remaining steps, halts continuous SPS / Custom OSC live-drive, and stops all Intiface / PiShock / OwO output. Previously it only emptied the pending queue and left the active chain playing.
 - **Dev:** Custom OSC trigger uses a dedicated watch path that bypasses the noise/rate filters (like SPS) so rapidly-changing parameters are never auto-muted; running chains observe a cancel generation so Clear interrupts them deterministically even with several chains in flight.
 - **Dev:** Application version bumped to 7.0.0 across the executable manifest and version info. Per the updated versioning policy, milestone / roadmap feature additions now bump the MAJOR version.

@@ -72,6 +72,7 @@ Stream Connector supports the full Buttplug command surface, not just basic vibr
 - Multi-actuator devices driven together (for example, constrict and vibrate at once)
 - Per-device mode, intensity, and duration in the chain editor
 - Per-device motor selection on multi-actuator toys: drive only the actuators you pick, all of them, or a random subset that re-rolls each trigger (Selected / All Motors / Random Motors)
+- A per-device Custom mode gives each motor its own waveform (vibrate, pulse, oscillation, constrict, ...) and its own intensity, all running at once
 - Buttplug v4 protocol, with automatic v3 fallback for older Intiface servers
 - Live battery readout and on-demand device rescan
 
