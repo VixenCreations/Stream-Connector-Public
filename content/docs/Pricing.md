@@ -83,9 +83,10 @@ the other.
 - **Support.** Free Tier uses community channels. Pro includes priority Discord support with a
   guaranteed response SLA. Lifetime holders receive on-call escalation for critical issues. Response
   targets are defined in the [Service Level Agreement](/docs/sla).
-- **Refunds and transfers.** Because these are digital products, purchase terms and refund eligibility
-  are set out on the store listing and in the [Licensing](/docs/licensing) EULA at the time of sale.
-  License transfers, where offered, are handled via sales contact.
+- **Refunds and transfers.** All sales are final. Because these are digital products delivered
+  instantly, purchases are non-refundable once delivered, and cancelling a subscription stops future
+  charges but does not refund payments already made. Full terms are on the store listing and in the
+  [Licensing](/docs/licensing) EULA. License transfers, where offered, are handled via sales contact.
 - **Trial status.** A trial version is planned and will be announced when implemented.
 
 ---
