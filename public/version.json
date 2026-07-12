@@ -1,0 +1,10 @@
+{
+  "latest": "7.2.0",
+  "min_supported": "7.0.0",
+  "downloads": {
+    "stream_connector": "https://vixencreations.github.io/Stream-Connector-Public/",
+    "nexus": "https://vixencreations.github.io/Stream-Connector-Public/"
+  },
+  "notes_url": "https://vixencreations.github.io/Stream-Connector-Public/docs/changelog/",
+  "released": "2026-07-12"
+}
