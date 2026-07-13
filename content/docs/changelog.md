@@ -3,6 +3,16 @@ Full version history for Stream Connector. Newest releases first.
 > This log mirrors the changelog shipped inside the app (Docs → Changelog).
 > Offline-safe, no telemetry, no cloud.
 
+## v7.3.0
+
+- **Bugfix:** Clear Queue now forces an immediate, full stop on every connected device (Intiface, PiShock, and OwO), including long-running and parallel patterns. Previously some outputs, notably a PiShock pattern set to a long duration, could keep running out their full time after you cleared; now every running action checks for the stop and halts within a fraction of a second, and the app actively tells each device to stop.
+- **Improvement:** The on-screen activity log no longer floods with connection status messages. Device connect/disconnect and heartbeat events now update the status indicators quietly (and are still recorded), so the log stays readable during connection hiccups.
+- **Feature:** The app now checks for updates on launch. If a newer version is available you get a non-blocking 'Update Available' notice with a one-click link to download. It is a plain, unauthenticated check of a small version file on the website and sends none of your data.
+- **Feature:** New Changelog button in the Support tab opens the online changelog in your browser.
+- **Improvement:** Support Docs now open the online documentation in your browser, and the app opens on the OSC Controls tab by default.
+- **Dev:** Unified hard-cancel across every hardware runner (chain executor, PiShock parallel and special-mode workers, and OwO pattern runner) via a per-client cancel generation that each runner polls (about 100 ms); Clear Queue's stop now covers Intiface, PiShock, and OwO. This fixes orphaned PiShock parallel workers that previously ran their full duration after a clear. Connection-lifecycle events are routed to deduped status logging instead of the visible log box. The embedded local docs web server was removed, so Support Docs and the changelog open the online site. The launch update check reads a small version.json from the site (throttled to about once a day, silent when offline).
+- **Dev:** Application version bumped to 7.3.0 across the executable manifest and version info (MINOR - feature addition).
+
 ## v7.2.0
 
 - **Feature:** New Manage Filters window - open it from the OSC Controls tab (the 'Manage Filters' button next to 'Filter Selected') to browse, search, add, and remove the parameter filters the app uses to mute chatty or tracking-only OSC. Pick a category (three Noisy buckets and two Nuclear buckets), search within it, add a pattern with Enter, remove selected rows, and double-click a noisy row to toggle whether it is sanitized. Changes take effect right away, no restart needed.
