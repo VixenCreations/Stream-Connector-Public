@@ -430,7 +430,6 @@ a.card:hover {
 }
 .status-planned { color: #c9bbff; background: rgba(123, 92, 255, 0.16); border-color: rgba(123, 92, 255, 0.4); }
 .status-progress { color: #ffd591; background: rgba(255, 176, 32, 0.15); border-color: rgba(255, 176, 32, 0.4); }
-.status-exploring { color: var(--text-dim); background: rgba(255, 255, 255, 0.06); border-color: var(--border-strong); }
 .status-shipped { color: #7ee2b0; background: rgba(53, 208, 127, 0.14); border-color: rgba(53, 208, 127, 0.4); }
 
 .roadmap-timeline {

@@ -18,18 +18,6 @@ unless explicitly configured otherwise.
 
 ---
 
-## In-app documentation server
-
-The application includes a local documentation viewer, not a hosted website.
-
-- Served on `127.0.0.1` only
-- Used by the in-app documentation UI
-- No external exposure and no telemetry
-
-A firewall prompt may appear for it, but the binding remains local.
-
----
-
 ## OwO vest (local hardware, Bluetooth)
 
 The OwO vest control path is hardware communication, not internet traffic.

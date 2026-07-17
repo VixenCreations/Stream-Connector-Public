@@ -1,13 +1,7 @@
 /API Docs
 /Source Code
 /Testing Tools
-/saved/controls
-/saved/logs
-/saved/config/devices
-/saved/config/userdata
-/saved/config/current_avatar.json
-/saved/config/last_avatar.txt
-/saved/config/user.json
+/saved
 
 # Website (Next.js)
 /node_modules

@@ -20,7 +20,6 @@ All important state lives in `saved/`. Removing that folder resets the applicati
 
 ```
 saved/
-├── changelogs/
 ├── config/
 ├── controls/
 ├── logs/
@@ -29,26 +28,12 @@ saved/
 
 ---
 
-## saved/changelogs/
-
-```
-saved/changelogs/
-└── version.json
-```
-
-Used by the in-app UI to display release history.
-
----
-
 ## saved/config/
 
 ```
 saved/config/
 ├── dev.json            (debug toggle: selects logs_debug.db vs logs_prod.db)
-├── user.json
-├── devices/
-│   ├── devices.json
-│   └── intiface_devices.json
+├── secure.db           (encrypted, machine-bound store: settings, credentials, saved devices, avatars, and license)
 ├── filters/
 │   └── filters.db      (noisy + nuclear OSC filters; edit via Manage Filters)
 ├── owo/
