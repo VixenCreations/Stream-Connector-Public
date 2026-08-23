@@ -18,11 +18,13 @@ the public internet. Everything runs locally on your machine.
 No. Every system is modular. You can use any subset on its own:
 
 - VRChat only
-- TikTok only
+- TikTok (through TikFinity) only
 - Streamer.bot only
 - OwO only
 - PiShock only
 - Intiface only
+- GiggleTech only
+- DG-LAB only
 - Any combination, up to everything at once
 
 Nothing forces you into a feature you do not want.
@@ -37,7 +39,8 @@ Yes. OSC works standalone, with no TikTok or bot integration required.
 
 ## Can I use only TikTok?
 
-Yes. TikTok events flow directly into Stream Connector actions, with no VRChat required.
+Yes, with no VRChat required. TikTok events reach the app through **TikFinity**, so you set
+TikFinity up once and point it at Stream Connector. There is no separate TikTok login in the app.
 
 ---
 

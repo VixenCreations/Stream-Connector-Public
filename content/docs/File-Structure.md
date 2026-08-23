@@ -1,5 +1,5 @@
-This page describes how Stream Connector is laid out on disk. Every persistent file lives under a
-single `saved/` folder, which makes the application easy to back up and reset.
+This page describes how Stream Connector is laid out on disk. Everything it saves lives under a
+single `saved/` folder next to the executable, so the app is easy to back up and easy to reset.
 
 ---
 
@@ -8,11 +8,10 @@ single `saved/` folder, which makes the application easy to back up and reset.
 ```
 Stream Connector/
 ├── Stream Connector.exe
-├── giftMapping.json
 └── saved/
 ```
 
-All important state lives in `saved/`. Removing that folder resets the application to a clean state.
+Delete `saved/` and the app starts fresh. That is the whole reset procedure.
 
 ---
 
@@ -20,11 +19,22 @@ All important state lives in `saved/`. Removing that folder resets the applicati
 
 ```
 saved/
+├── app.db
 ├── config/
-├── controls/
-├── logs/
-└── userdata/
+└── controls/
 ```
+
+**`app.db` is the important one.** It is a single SQLite database holding your settings, your OSC
+filters, your avatar control layouts, your chains, and the app's logs. Back up that one file and you
+have your setup.
+
+It is a plain, unencrypted database. Anything you put in it (a PiShock API key, a license key) is
+readable by anything that can read the file, so treat it the way you would treat any other file in
+your user profile.
+
+> **Upgrading from 7.3.0 or earlier?** The app used to keep several separate databases and a folder
+> of JSON files. On first launch it folds them all into `app.db` automatically. Your originals are
+> kept in `saved/controls/backup/`, so nothing is thrown away.
 
 ---
 
@@ -32,17 +42,19 @@ saved/
 
 ```
 saved/config/
-├── dev.json            (debug toggle: selects logs_debug.db vs logs_prod.db)
-├── secure.db           (encrypted, machine-bound store: settings, credentials, saved devices, avatars, and license)
-├── filters/
-│   └── filters.db      (noisy + nuclear OSC filters; edit via Manage Filters)
+├── devices/
+│   └── giggletech_devices.json   (your GiggleTech units: name, IP, port)
 ├── owo/
-└── routing/
-    └── endpoints.json
+├── routing/
+│   └── endpoints.json            (OSC, Intiface, TikFinity, webhook, Streamer.bot, GiggleTech, DG-LAB)
+└── userdata/
 ```
 
-Routing endpoints (OSC, Intiface, TikFinity, webhook, and Streamer.bot) are editable in
-`routing/endpoints.json`.
+Edit `endpoints.json` if you need to move a port or point the app at a different address. Everything
+else in here the app manages for you.
+
+GiggleTech units stay in a plain JSON file on purpose. They are LAN addresses, not secrets, and
+keeping them editable makes it easy to fix a unit that changed IP.
 
 ---
 
@@ -50,40 +62,22 @@ Routing endpoints (OSC, Intiface, TikFinity, webhook, and Streamer.bot) are edit
 
 ```
 saved/controls/
-├── chains/
-│   ├── *.json
-│   └── backup/
+├── backup/
 ├── export/
-├── owo/
-└── backup/
+└── owo/
 ```
 
-Each chain is stored as its own JSON file, with automatic backups.
+- **`backup/`** holds automatic backups, including the pre-upgrade copies of your old chain files.
+- **`export/`** is where Export writes to, and where you put a file to import.
+- **`owo/`** holds your `.owo` sensation files.
 
----
-
-## saved/logs/ (SQLite)
-
-Logging uses a pair of SQLite databases with one table per module, rather than loose `.log` text
-files. `dev.json` decides which database is used.
-
-```
-saved/logs/
-├── logs_debug.db   (debug runs; appended)
-└── logs_prod.db    (normal runs; truncated each launch)
-```
-
----
-
-## saved/userdata/
-
-Holds a small local state file that is generated on first run and recreated automatically if it is
-missing. It contains no account or remote credentials.
+Your live chains and control layouts are no longer loose JSON files. They live in `app.db` with
+version history, which is why the old `chains/` folder is gone.
 
 ---
 
 ## Notes
 
-- Everything persistent lives under `saved/`
-- Logs are separated cleanly by subsystem
-- If something fails, the logs record the cause
+- Everything persistent lives under `saved/`.
+- Logs are in `app.db`, one table per part of the app, and they now survive across runs.
+- If something fails, the logs record the cause.

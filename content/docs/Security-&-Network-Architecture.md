@@ -34,15 +34,24 @@ tool it may use UDP or HTTP, but the binding stays on `127.0.0.1`.
 
 ---
 
-## TikTok gift images (outbound pull and cache)
+## GiggleTech (outbound to your LAN)
 
-When a gift icon is unknown or not yet cached, the application can fetch it from TikTok's CDN.
+GiggleTech units are driven directly, with no vendor router in between.
 
-- Outbound only, over HTTPS on port `443`
-- A standard HTTPS GET request
-- Cached locally after retrieval to avoid repeat fetches
+- One UDP packet per unit, to the unit's own IP on port `8888` by default
+- Outbound only; the app opens no listener for GiggleTech
+- Addresses are yours to edit in `saved/config/devices/giggletech_devices.json`
 
-To avoid network fetches entirely, you can supply your own asset pack and force local mapping.
+---
+
+## DG-LAB Coyote (outbound relay)
+
+The DG-LAB Coyote pairs and receives commands through the vendor's relay, which is how the device is
+designed to work.
+
+- Outbound secure WebSocket to the DG-LAB relay
+- Pairing is a QR code you scan in the DG-LAB phone app
+- The device's own strength limits are read back and always respected
 
 ---
 

@@ -35,13 +35,14 @@ why it is benign in this project.
 
 | Property | Value |
 | --- | --- |
-| Language / runtime | Python 3.11 |
-| Packager | PyInstaller 6.12 (one-file, windowed) |
+| Language / runtime | Python 3.13 |
+| Packager | PyInstaller 6.22 (one-file, windowed) |
 | Compression | UPX disabled (no executable packing) |
-| Code signing | Unsigned (no Authenticode certificate) |
+| Code signing | Self-signed development certificate (not a trusted CA, see section 5.2) |
 | Privilege level | `asInvoker` (no elevation) |
 | UI | Tkinter desktop GUI |
-| Primary dependencies | Flask, websockets, websocket-client, python-osc, zeroconf, watchdog, requests, Pillow, TikTokLive, pythonnet |
+| Primary dependencies | Flask, requests, aiohttp, websockets, websocket-client, python-osc, zeroconf, Pillow, pypresence |
+| Not present | No `cryptography`, no `pythonnet` / .NET, no filesystem watcher, no auto-updater |
 
 The single-file build unpacks its bundled runtime to a temporary directory (`%TEMP%`) on launch and
 executes from there. This is standard PyInstaller behavior and is itself a frequent source of
@@ -59,8 +60,9 @@ heuristic detections (see section 5.1).
 | OSCQuery / mDNS | Local network | zeroconf advertise + discover | VRChat OSC endpoint discovery |
 | Intiface / Buttplug | Local | WebSocket to Intiface Central | Device control |
 | Streamer.bot / TikFinity | Local | WebSocket | Event ingestion |
+| GiggleTech | Local network | UDP to the unit's IP (default port `8888`) | Motor commands, sent straight to the hardware |
 | PiShock | Outbound | WSS + HTTPS to PiShock broker | Real-time device commands (brokered platform) |
-| TikTok | Outbound | HTTPS | Live event stream and gift-image CDN fetch |
+| DG-LAB Coyote | Outbound | WSS to the DG-LAB relay | Pairing and device commands (relayed platform) |
 
 Every endpoint is documented in [Network Architecture](/docs/security-network-architecture) and is
 configurable in `saved/config/routing/endpoints.json`.
@@ -82,12 +84,12 @@ applications routinely receive; they are false positives in this context.
 - **Technique class:** Self-extraction and execution from a temporary directory (dropper-like pattern); bundled-interpreter execution (T1059).
 - **Why it is benign:** This is the documented, default behavior of PyInstaller, which is used by a large number of legitimate applications. The same packaging method is also used by some malware, which is why the pattern alone (not the contents) drives these machine-learning verdicts. No payload is dropped to disk for persistence; the extracted files are the application's own runtime and are removed on exit.
 
-### 5.2 Unsigned binary
+### 5.2 Self-signed binary
 
-- **Behavior:** The executable is not Authenticode-signed (`codesign_identity` is unset in the build).
-- **Typical verdicts:** SmartScreen "Unknown Publisher" warnings, reputation-based blocks, and elevated heuristic scoring for low-prevalence files.
+- **Behavior:** Every release is signed, but with a self-signed development certificate (`CN=VixForge Interactive`), not one issued by a commercial certificate authority. The signature is cryptographically valid and timestamped; its chain ends at a root Windows does not trust.
+- **Typical verdicts:** SmartScreen "Unknown Publisher" warnings, an `invalid-signature` tag on multi-engine scanners, reputation-based blocks, and elevated heuristic scoring for low-prevalence files.
 - **Technique class:** Absence of a trusted signature and low file reputation.
-- **Why it is benign:** Code-signing certificates establish publisher reputation; they do not make code safe, and their absence does not make code malicious. Until a signing certificate and download prevalence are established, new builds are treated as low-reputation and scored more aggressively.
+- **Why it is benign:** Code-signing certificates establish publisher reputation; they do not make code safe, and their absence does not make code malicious. We sign so that every release carries one stable publisher identity and public key, which is the thing reputation can accumulate against. **Be clear about what this does not do:** it does not silence SmartScreen, and it does not grant the trusted-CA signal that scanners weight. A commercial certificate is the real fix and is on the roadmap.
 
 ### 5.3 Native Windows API calls via ctypes
 
@@ -96,42 +98,28 @@ applications routinely receive; they are false positives in this context.
 - **Technique class:** Native API (T1106).
 - **Why it is benign:** These calls are limited to setting the application's own taskbar identity and icon. They do not inject into other processes, hook APIs, or modify system state.
 
-### 5.4 Dynamic .NET assembly loading (pythonnet / CLR)
+### 5.4 Multiple local network listeners and WebSocket clients
 
-- **Behavior:** The OWO haptics SDK is distributed as a native .NET assembly (`OWO.dll`) and is loaded at runtime through pythonnet (`clr`, `System.Reflection`) rather than being statically linked.
-- **Typical verdicts:** Heuristics for reflective or runtime assembly loading.
-- **Technique class:** Reflective code loading (T1620).
-- **Why it is benign:** The loaded assembly is the official OWO SDK, loaded from the application's own folder to talk to OWO hardware. Loading a vendor SDK at runtime is the supported integration method for that device.
-
-### 5.5 Multiple local network listeners and WebSocket clients
-
-- **Behavior:** The application binds local HTTP servers (Flask on `8832` and `8840`), opens UDP sockets for OSC, and maintains WebSocket connections to Intiface, Streamer.bot, and TikFinity.
+- **Behavior:** The application binds local HTTP servers (Flask on `8832` and `8840`), opens UDP sockets for OSC and for GiggleTech units on the LAN, and maintains WebSocket connections to Intiface, Streamer.bot, TikFinity, the PiShock broker, and the DG-LAB relay.
 - **Typical verdicts:** Heuristics for software that listens on sockets and maintains multiple persistent connections.
 - **Technique class:** Application-layer and non-application-layer protocols (T1071, T1095).
-- **Why it is benign:** All servers bind to `127.0.0.1` and are not reachable from outside the machine. The WebSocket clients connect only to services the user has configured (local device bridges and a remote device broker).
+- **Why it is benign:** All servers bind to `127.0.0.1` and are not reachable from outside the machine. The clients connect only to services the user has configured: local device bridges, LAN hardware they entered the address of, and two remote device platforms that cannot be driven any other way.
 
-### 5.6 mDNS / zeroconf service advertising and discovery
+### 5.5 mDNS / zeroconf service advertising and discovery
 
 - **Behavior:** To interoperate with VRChat's OSCQuery, the application advertises and discovers services on the local network using multicast DNS (zeroconf).
 - **Typical verdicts:** Heuristics for network service discovery and LAN broadcast activity.
 - **Technique class:** Network service discovery (T1046).
 - **Why it is benign:** OSCQuery is the standard mechanism VRChat uses to publish and locate OSC endpoints. The advertisement is limited to the OSC service and contains no sensitive data.
 
-### 5.7 Filesystem monitoring (watchdog)
+### 5.6 Outbound encrypted connections
 
-- **Behavior:** The application watches its own configuration and avatar files with the `watchdog` library to support live hot-reload.
-- **Typical verdicts:** Heuristics that associate broad filesystem monitoring with spyware or ransomware staging.
-- **Technique class:** File and directory discovery / monitoring (T1083).
-- **Why it is benign:** Monitoring is scoped to the application's own `saved/` configuration files, not user documents, and is used only to reload configuration when it changes.
-
-### 5.8 Outbound encrypted connections
-
-- **Behavior:** The application opens outbound TLS connections: secure WebSocket (WSS) and HTTPS to the PiShock broker, and HTTPS to TikTok for live events and gift images.
+- **Behavior:** The application opens outbound TLS connections: secure WebSocket (WSS) and HTTPS to the PiShock broker, WSS to the DG-LAB relay, and HTTPS to the license service and the version-check file on this site.
 - **Typical verdicts:** Heuristics for encrypted command-and-control-style channels.
 - **Technique class:** Encrypted channel (T1573).
-- **Why it is benign:** These connections go to the documented PiShock and TikTok services that the corresponding features require. PiShock is a brokered platform and cannot be driven without its broker; TikTok event ingestion requires a connection to TikTok.
+- **Why it is benign:** Each connection goes to a documented service that the corresponding feature requires. PiShock is a brokered platform and cannot be driven without its broker. DG-LAB Coyote pairs and receives commands through its vendor relay by design. Nothing connects unless you have set that feature up.
 
-### 5.9 Cryptographic hashing
+### 5.7 Cryptographic hashing
 
 - **Behavior:** The application uses `hashlib` (SHA-256 and BLAKE2s) to hash configuration data for change detection and safe, deduplicated backups.
 - **Typical verdicts:** Heuristics that score cryptographic-primitive usage in combination with the items above.
@@ -145,6 +133,12 @@ applications routinely receive; they are false positives in this context.
 - **No executable packing.** UPX is disabled, because packed executables raise heuristic scores.
 - **No obfuscation.** The build is not obfuscated, keeping its behavior straightforward to analyze.
 - **No elevation.** The manifest requests `asInvoker`; the application does not ask for administrator rights.
+- **No encryption of your data.** The app stores its data as plain SQLite. An unsigned program that derives a key from your machine and writes ciphertext over its own files reads to a scanner exactly like a ransomware encryptor, and the encryption protected little anyway, since the key came from the same machine that held the file.
+- **No expiry check against your clock.** Nothing in the app compares the build date to the current date and disables itself. That pattern is a time bomb, and scanners name it as one.
+- **No automatic browser or program launch.** The app opens a link only when you click something that says it will.
+- **No searching your folders.** File access outside `saved/` is limited to VRChat's own OSC folder, at exact paths, with no wildcard walks and no reading file contents to look for a string.
+- **One database file.** Settings, filters, controls, chains, and logs share `saved/app.db`, so the app is not constantly rewriting a spread of files, which is the churn pattern ransomware heuristics look for.
+- **Signed, honestly described.** Every release carries a signature and a stable publisher identity. See section 5.2 for exactly what that is worth.
 - **Documented surface.** Every port, protocol, and outbound destination is published in this document and in the Network Architecture page.
 
 ---

@@ -15,14 +15,14 @@ see the [Service Level Agreement](/docs/sla).
 
 ## Under the hood
 
-- **Zero-latency execution** - a high-frequency OSC evaluation engine for deterministic, repeatable
-  event delivery.
-- **Cryptographic security** - encrypted, machine-bound credential storage for license keys and API
-  tokens.
-- **Defense-in-depth routing** - per-actuator interval stepping and filtering to prevent collisions
-  and hardware misfires.
-- **Scalable architecture** - decoupled ingestion pipelines and isolated worker threads that protect
-  the core loop under load.
+- **Fast, repeatable triggers** - OSC is evaluated at a high rate, so the same input gives the same
+  result every time.
+- **Local and private** - everything runs on your machine. No account, no cloud, no telemetry, and
+  nothing about your setup leaves the PC.
+- **Sane hardware routing** - per-actuator rate limits and stepping, so several outputs can run at
+  once without stepping on each other or misfiring.
+- **Holds up under load** - event ingestion and device work run on their own threads, so a flood of
+  stream events does not stall the core loop.
 
 ---
 

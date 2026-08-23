@@ -10,11 +10,13 @@ precise control over live reactions, device integrations, and real-time logic.
 
 It connects:
 
-- TikTok Live
+- TikTok Live (through TikFinity)
 - Streamer.bot (Twitch, YouTube, and Kick)
 - VRChat OSC
 - PiShock devices
 - Intiface and Bluetooth devices
+- GiggleTech units
+- DG-LAB Coyote
 - OwO haptics
 - External tools through a local HTTP API
 - Custom logic chains
@@ -40,13 +42,13 @@ It is designed to:
 
 Stream Connector ships in two editions built from the same engine:
 
-- **Stream Connector** - the full toolkit described above: TikTok Live, Streamer.bot
-  (Twitch, YouTube, and Kick), VRChat OSC, PiShock, Intiface and Bluetooth devices, OwO,
-  the external HTTP API, and the chain system.
+- **Stream Connector** - the full toolkit described above: TikTok Live through TikFinity,
+  Streamer.bot (Twitch, YouTube, and Kick), VRChat OSC, PiShock, Intiface and Bluetooth devices,
+  GiggleTech, DG-LAB, OwO, the external HTTP API, and the chain system.
 - **VixForge Haptics Nexus** - a haptics-focused edition for VRChat. It keeps VRChat OSC and
-  OSCQuery, SPS / OGB live-touch, Intiface and Bluetooth devices, PiShock, OwO, and the full
-  chain system, but leaves out the livestreaming sources (no TikTok, TikFinity, or
-  Streamer.bot). It is for people who only want VRChat touch driving real devices - a lighter,
+  OSCQuery, SPS / OGB live-touch, Intiface and Bluetooth devices, PiShock, GiggleTech, DG-LAB,
+  OwO, and the full chain system, but leaves out the livestreaming sources (no TikTok, TikFinity,
+  or Streamer.bot). It is for people who only want VRChat touch driving real devices - a lighter,
   focused interface with its own dark-alloy theme.
 
 Both editions share the same chains, device support, and SPS engine; the Haptics Nexus simply

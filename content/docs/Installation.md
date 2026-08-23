@@ -9,8 +9,8 @@
 
 - Windows 10 or newer
 - VRChat (optional, only if you use OSC)
-- A TikTok account (optional)
-- PiShock or OwO devices (optional)
+- TikFinity (optional, and how TikTok events reach the app)
+- PiShock, OwO, Intiface, GiggleTech, or DG-LAB devices (all optional)
 
 ---
 
@@ -35,9 +35,10 @@ account, login, or activation step is required.
 
 Optional settings include:
 
-- TikTok username (case sensitive)
 - PiShock account and API key
 - OSC (VRChat)
+- GiggleTech units (name, IP, and port)
+- DG-LAB pairing
 
 Any integration you do not use can be left blank without affecting the others.
 

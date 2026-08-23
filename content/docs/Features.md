@@ -5,6 +5,9 @@ used on its own or combined with the others through the chain engine.
 
 ## TikTok integration
 
+TikTok events reach Stream Connector through **TikFinity**, which handles the connection to your
+live stream. Set TikFinity up once and point it at the app.
+
 - Live response to follows, gifts, likes, and comments
 - Immediate, event-driven execution
 - No artificial delays between event and action
@@ -90,17 +93,61 @@ Each command is routed to the correct actuator based on the device's reported ca
 
 ---
 
+## GiggleTech
+
+GiggleTech units are driven straight over your network. You do not need the GiggleTech router
+running.
+
+- Add each unit by name, IP, and port (default `8888`)
+- Works in chains and on the live-touch path, the same as every other device
+- Motor output is scaled to protect the hardware, matching what the vendor's own router does
+- Release always sends an explicit stop, so a motor can never be left running
+
+---
+
+## DG-LAB Coyote
+
+Support for the DG-LAB Coyote V3, on both channels.
+
+- Pair by scanning a QR code in the DG-LAB app
+- Both channels (A and B) are addressable independently
+- Strength and frequency are set per step, with waveform playback
+- The device reports its own strength limits and the app never exceeds them
+
+---
+
 ## SPS / OGB live-touch
 
 VRChat reports where and how much an avatar is being touched through SPS / OGB contact parameters.
 Stream Connector converts that into live device output, in real time and scaled to the touch level.
 
 - Output ramps with the touch and stops when the touch ends
-- Drives all enabled outputs at once: Intiface intensity, OSC parameters, PiShock vibrate, and the OwO vest
+- Drives all enabled outputs at once: Intiface, OSC parameters, PiShock, GiggleTech, DG-LAB, and the OwO vest
 - Continuous mode scales each output to the live touch level
 - Threshold mode fires the full chain once when the touch crosses a configured level, then re-arms
 - Per-zone include and exclude, plus contact-type selection
-- On the live-touch path, PiShock is limited to vibrate and is never live-shocked, by design
+
+### Shapes
+
+A shape decides *how* a device expresses the live touch over time, separately from how hard the
+touch is. Pick one per chain, or per device family:
+
+| Shape | What it feels like |
+| --- | --- |
+| **Steady** | Follows the touch directly. The original behaviour. |
+| **Hold** | Keeps the last level when you stop moving. |
+| **Edge** | Drops to nothing the moment you stop. |
+| **Climb** | Builds the longer you keep moving, and resets when you stop. |
+| **Pace** | Separate hits, closer together the faster you go. |
+| **Peak** | One hit at each turn of a stroke, harder when it is fast. |
+| **Tease** | Loudest when you are still and deep. |
+
+### PiShock on live touch
+
+PiShock defaults to vibrate on the live-touch path. You can turn on shock, and if you do, the app
+holds it to a fixed safety envelope: each hit is the shortest the PiShock API accepts, with a
+minimum gap of one second between hits, and your chain's Intensity is the hard ceiling. Placement
+guidance is shown right in the editor.
 
 ---
 
@@ -114,7 +161,7 @@ from them.
 - Each row is Continuous (scales the outputs to the live value) or Threshold (fires the whole chain
   once when the value crosses, then re-arms)
 - Per-row deadzone and scale to shape how each parameter feels
-- Fans out to every enabled integration at once: Intiface, OSC parameters, PiShock, and the OwO vest
+- Fans out to every enabled integration at once: Intiface, OSC parameters, PiShock, GiggleTech, DG-LAB, and the OwO vest
 - Watched parameters bypass the noise filters, so fast-changing values are never auto-muted
 
 ---

@@ -30,8 +30,9 @@ avatar data, chat content, device usage, or any analytics or behavioural profile
 The Software stores the following **only on your machine**, never transmitted to us:
 
 - Your chains, patterns, triggers, OSC controls, and application settings.
-- Saved device references (for example PiShock and Intiface devices) and, for a paid license, your
-  license key and purchase email - kept in an **encrypted, machine-bound local database**.
+- Saved device references (for example PiShock, Intiface, GiggleTech, and DG-LAB devices) and, for a
+  paid license, your license key and purchase email - kept in a **local database on your machine**
+  (`saved/app.db`). It is a plain, unencrypted SQLite file, and no hardware identifier is collected.
 - Local logs (capped in size) to help you review what the app did. These stay on your device.
 
 You can delete this data at any time by removing the app's saved files or uninstalling the Software.

@@ -4,7 +4,7 @@ import { SITE } from '@/lib/site.mjs';
 const FEATURES = [
   {
     title: 'TikTok Live',
-    text: 'Respond to follows, gifts, likes, subscriptions, and comments. Event-driven and deterministic, with immediate execution.',
+    text: 'Respond to follows, gifts, likes, subscriptions, and comments, delivered through TikFinity. Event-driven and deterministic, with immediate execution.',
   },
   {
     title: 'Chain Logic Engine',
@@ -29,6 +29,14 @@ const FEATURES = [
   {
     title: 'OwO Haptics',
     text: 'Full vest control with pattern playback, visualizer sync, multi-device coordination, and continuous live-touch playback.',
+  },
+  {
+    title: 'GiggleTech',
+    text: 'Drives GiggleTech units directly over your network, with no vendor router in the middle. Add each unit by IP and use it anywhere a device can go.',
+  },
+  {
+    title: 'DG-LAB Coyote',
+    text: 'DG-LAB Coyote V3 on both channels, paired by QR code, with per-step strength and frequency and the device\'s own limits always respected.',
   },
   {
     title: 'Streamer.bot + External API',

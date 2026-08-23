@@ -1,7 +1,37 @@
 Full version history for Stream Connector. Newest releases first.
 
-> This log mirrors the changelog shipped inside the app (Docs → Changelog).
-> Offline-safe, no telemetry, no cloud.
+> Offline-safe, no telemetry, no cloud. The app's Changelog button opens this page.
+
+## v7.5.0
+
+> **Read this one before you upgrade.** Your saved data is no longer encrypted, and everything the
+> app stores now lives in a single file. Details in the two Security items below.
+
+- **Feature:** GiggleTech support. Add your units by name, IP, and port, and use them anywhere any other device goes: chain steps, live VRChat touch, the lot. The app talks to the hardware directly, so you do not need the GiggleTech router running. Motor output is scaled to protect the hardware the same way the vendor's own router does, and letting go always sends an explicit stop so a motor can never be left buzzing.
+- **Feature:** DG-LAB Coyote V3 support, on both channels. Pair by scanning a QR code in the DG-LAB app. Strength and frequency are set per step, the two channels are addressed independently, and the app reads the device's own strength limits and never goes past them.
+- **Security:** **Your settings are no longer encrypted.** Everything the app saves is now plain, readable SQLite. The old encrypted store derived its key from the same machine that held the file, so anything able to read the file could derive the key: it was protecting less than it looked like it was. It also made the app look like ransomware to antivirus engines, which cost real users real false positives. Your PiShock API key and license key are affected. If that matters to your situation, keep the app's folder somewhere you are comfortable with, the same as any other file in your user profile. On upgrade the app asks you once to re-enter your PiShock API key and, on Haptics Nexus, your license key.
+- **Security:** **One file now holds everything.** Settings, OSC filters, control layouts, chains, and logs have been folded into a single `saved/app.db`. Nine files on disk became three, and the app is no longer constantly rewriting a spread of files while you use it. Your old files are imported automatically on first launch and the originals are kept in `saved/controls/backup/`, so nothing is thrown away. Chains now carry version history in the database instead of a pile of `.bak` files.
+- **Security:** Every release is now signed. It is a self-signed certificate, not one from a commercial authority, so Windows will still show an unknown-publisher prompt; what it buys is one stable publisher identity across releases. We would rather tell you exactly what that is worth than imply it is more. The [Security](/docs/security) page has the full picture.
+- **Improvement:** The license check got a lot less pushy. It keeps working offline for up to **90 days** between successful re-checks (it was 14), re-checks once a day rather than constantly, and treats a server outage or a rate-limit as "carry on" instead of locking you out. It also warns you before the offline window closes rather than going quiet and stopping.
+- **Bugfix:** PiShock no longer cuts out during a live VRChat touch. A continuous touch was firing overlapping commands several times a second, and because the box treats every command as a fresh run, each one restarted the last. The touch path now holds one steady cadence, sizes each command to match it, and no longer blocks queued chains from running while you are being touched. The stray keepalive ping that fired the instant output stopped is gone too.
+- **Bugfix:** The emergency stop could fail to run at all. Fixed.
+- **Improvement:** TikTok events now come exclusively through **TikFinity**. The app's own direct TikTok connection has been removed: it only ever existed as a fallback for when TikFinity was down, and it moved to a paid tier. TikFinity is set up once and does the job.
+- **Improvement:** The app looks up your VRChat avatar file at its exact path instead of searching through your user folders for it. Faster, and it means the app never reads files it has no business reading.
+- **Housekeeping:** The 14-day beta expiry is gone. Nothing in the app now checks your clock and switches itself off, and nothing opens a browser window on its own.
+- **Dev:** Moved to Python 3.13.15 from 3.11.9, which was the last Windows build of 3.11 and two years old. Pillow 9.5 to 12.3, urllib3 1.26 to 2.7, websockets 10.3 to 17.0.1, zeroconf and aiohttp current, PyInstaller 6.12 to 6.22.2. The whole dependency set audits clean against the advisory databases.
+- **Dev:** Application version bumped to 7.5.0 across the executable manifest and version info. Two new device families is a feature addition, so this is a MINOR bump.
+
+## v7.4.0
+
+- **Feature:** Live touch shapes. A shape decides *how* a device expresses a touch over time, separately from how hard the touch is, and one setting covers every device family. Seven to pick from: **Steady** (follows the touch, what you had before), **Hold** (keeps the last level when you stop moving), **Edge** (drops to nothing the moment you stop), **Climb** (builds the longer you keep going, resets when you stop), **Pace** (separate hits that come closer together the faster you go), **Peak** (one hit at each turn of a stroke, harder when it is fast), and **Tease** (loudest when you are still and deep).
+- **Feature:** PiShock can now shock from a live VRChat touch, not just vibrate. It is off by default. If you turn it on, the app holds it to a fixed safety envelope: each hit is the shortest the PiShock API accepts, there is always at least a second between hits, and your chain's Intensity is a hard ceiling that the live value cannot push past.
+- **Improvement:** Placement guidance for PiShock is now shown right in the chain editor, so the safe and never-there areas are in front of you while you are setting a shock up rather than in a document somewhere else.
+- **Bugfix:** SPS / OGB touch zones showed up empty on some avatars. VRChat keeps its contact receivers switched off until something asks for them, and the app was not asking, so on affected avatars the zone list simply stayed at zero and nothing could be configured. The app now keeps that request alive, and the zones appear.
+- **Bugfix:** PiShock commands longer than the API's own limit are split into parts correctly. Long runs previously ended early, ignored a shocker's own maximum duration, or drifted out of time across a sequence.
+- **Improvement:** Per-shocker limits reported by PiShock (whether it may shock at all, and its maximum intensity and duration) are now read and enforced, so a chain cannot ask a shocker for something it is not allowed to do.
+- **Bugfix:** Long windows in the chain editor could strand you partway down with no way to scroll further after adding or removing rows. Fixed.
+- **Improvement:** The chain editor is grouped into sections and the toolbar wraps properly at smaller window sizes.
+- **Dev:** Application version bumped to 7.4.0.
 
 ## v7.3.0
 

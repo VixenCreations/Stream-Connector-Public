@@ -48,8 +48,8 @@ reserved by Licensor.
 ### 2. License Key & Activation
 
 - Your purchase provides a **license key** tied to your **purchase email**. Activation validates both
-  against our store and binds the license to your device; your credentials are stored **encrypted,
-  locally, on your machine**.
+  against our store. Your key and email are stored **locally on your machine**, in the app's own
+  database. That database is not encrypted, and no hardware identifier is collected or sent.
 - Your license key and purchase email are **personal to you**. Keep them private. Disclosing,
   publishing, or sharing them is a breach of this Agreement and may result in deactivation.
 - After a successful online activation, the Software may continue to operate offline for a limited
@@ -69,7 +69,7 @@ The Digital Product is licensed to **one individual user**. You expressly agree 
   unless a multi-user license is explicitly purchased from Licensor.
 - **Reverse-engineer, decompile, disassemble,** or otherwise attempt to derive the source code of the
   Software, except to the limited extent this right cannot be waived under applicable law.
-- **Circumvent, disable, crack, patch, or tamper with** the license activation, the encrypted local
+- **Circumvent, disable, crack, patch, or tamper with** the license activation, the local license
   store, or any other technical protection measure.
 
 > Note: creating and adjusting your own chains, patterns, triggers, and settings *inside* the app is
