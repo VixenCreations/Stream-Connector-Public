@@ -2,6 +2,17 @@ Full version history for Stream Connector. Newest releases first.
 
 > Offline-safe, no telemetry, no cloud. The app's Changelog button opens this page.
 
+## v7.6.0
+* **Feature:** VRChat current avatar startup probe. The app now uses OSCQuery on startup to automatically ask VRChat which avatar you are currently wearing. You no longer need to manually change your avatar to get the app to recognize it on a fresh start.
+* **Feature:** Interface visual overhaul. Buttons across the main toolbar, chain editor, and control panels have been significantly upgraded to use crisp icons and a cleaner layout.
+* **Feature:** Collapsible chain groups. You can now click the chevron arrow on any group header in your chain library to easily hide or show those chains.
+* **Feature:** Upgraded chain cards. Chain cards in the library are now taller and feature a new subtitle that quickly summarizes the chain's trigger and its targeted devices. Play buttons also include a new visual "chip" indicator that clearly shows if a chain is ready, switched off, or currently locked to a specific avatar.
+* **Improvement:** Better automatic OSC port handling. The app now explicitly logs that taking its own automatic port leaves VRChat's default port free for other OSC apps. If the app fails to bind a listen port, it will now directly warn you if another app might already be holding it.
+* **Improvement:** Added a dedicated "Clear Queue" toolbar button that will empty all pending queued items and immediately stop any chain that is currently running.
+* **Bugfix:** Fixed standalone chain evaluation logic. Chains utilizing an OwO vest or Intiface will now correctly evaluate as standalone and bypass avatar step requirements even if PiShock is configured but disabled.
+* **Bugfix:** Text truncation on the new animated buttons now correctly calculates based on the actual available window width instead of a hardcoded character limit, preventing the title text from overflowing the button bounds.
+* **Bugfix:** Random chains that only drive external hardware devices (like GiggleTech or DG-LAB) without any avatar parameter steps will now properly execute instead of being skipped.
+
 ## v7.5.0
 
 > **Read this one before you upgrade.** Your saved data is no longer encrypted, and everything the
