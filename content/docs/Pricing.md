@@ -1,12 +1,12 @@
-**Last Updated:** 07-17-2026 &nbsp;•&nbsp; **Provider:** VixForge Interactive
+**Last Updated:** 08-25-2026 &nbsp;•&nbsp; **Provider:** VixForge Interactive
 
 This is the public pricing and licensing reference for **Stream Connector** and **VixForge Haptics
 Nexus**. Both are built from the same **VixForge Sentinel-Core** engine, and both are sold as separate
 sister applications with independent licenses, billing, and support.
 
-> **The pricing below is final.** **Stream Connector is not yet available for purchase** - its store
-> listings and activation are still being finalized, and availability will be announced when the store
-> goes live. The store listing at the time of purchase is authoritative.
+> **Stream Connector is not yet available for purchase.** Its store listings and activation are still
+> being finalized, and availability will be announced when the store goes live. Prices can change
+> before then, and the store listing at the time of purchase is always the authoritative one.
 
 For license grants and the EULA see the [Licensing](/docs/licensing) page; for support commitments
 see the [Service Level Agreement](/docs/sla).
@@ -28,15 +28,15 @@ see the [Service Level Agreement](/docs/sla).
 
 ## Pricing snapshot
 
-| App | Free Tier | Pro Monthly | Pro Annual | Lifetime |
-|---|---:|---:|---:|---:|
-| **Stream Connector** | Free | $9.99 / month | $99 / year | $75 one-time |
-| **VixForge Haptics Nexus** | Free | $9.99 / month | $99 / year | $75 one-time |
+| App | Free Tier | Pro Monthly | Lifetime |
+|---|---:|---:|---:|
+| **Stream Connector** | Free | $9.99 / month | $99 one-time |
+| **VixForge Haptics Nexus** | Free | $9.99 / month | $99 one-time |
 
-The Free Tier is feature-limited. Pro Monthly includes full feature access and priority support.
-Annual billing saves two months versus monthly. Lifetime is a one-time perpetual license for the
-purchased major engine version, priced below a single year of Pro so buying outright is the best
-long-term value. Each app is licensed separately; a subscription to one does not cover the other.
+Two ways to buy, and they unlock exactly the same features. Pro Monthly is the low-commitment one:
+pay for the months you actually use it, cancel whenever. Lifetime is a single payment for a perpetual
+license, and it still costs less than a year of Pro, so it is the one to buy if you expect to keep
+using the app. Each app is licensed separately, so a license for one does not cover the other.
 
 ---
 
@@ -44,8 +44,11 @@ long-term value. Each app is licensed separately; a subscription to one does not
 
 ### Free Tier
 
-- **Purpose:** try core functionality with limits on device count and advanced routing.
-- **Includes:** basic event ingestion or basic actuation, community support, and limited integrations.
+- **Purpose:** try the app on your own hardware before you decide.
+- **Includes:** one device, on one platform, with live VRChat touch and the per-device modes, motor
+  selection and rate limits that go with it.
+- **Excludes:** running more than one device or platform at once, saved chains, and custom OSC
+  triggers.
 - **Support:** community channels only; no guaranteed response SLA.
 
 ### Pro Monthly - $9.99 / month per app
@@ -55,16 +58,10 @@ long-term value. Each app is licensed separately; a subscription to one does not
   and security patches, priority Discord support with a guaranteed response SLA, and access to
   roadmap feedback channels.
 
-### Pro Annual - $99 / year per app
+### Lifetime - $99 one-time per app
 
-- **Purpose:** cost-effective subscription for regular users.
-- **Includes:** all Pro Monthly benefits, billed annually - roughly two months free versus paying
-  monthly.
-
-### Lifetime - $75 one-time per app
-
-- **Purpose:** a one-time purchase for creators who prefer owning a perpetual license. Priced below a
-  year of Pro, it is the cheapest way to own the app outright.
+- **Purpose:** a one-time purchase for creators who prefer owning a perpetual license. It costs less
+  than a year of Pro, so it is the cheapest way to own the app outright.
 - **Includes:** a perpetual license for the purchased major engine version, minor updates and security
   patches, on-call support escalation for critical issues, and major upgrades as specified in the
   Lifetime terms.
@@ -100,11 +97,13 @@ Perpetual use of the purchased major engine version, minor updates, and security
 escalation for critical issues; and major upgrades as specified in the Lifetime terms.
 
 **Is there a trial?**
-A trial is planned but not yet implemented. Details will be published when it is available.
+The Free Tier is the way to try it: one device on one platform, for as long as you like, with no time
+limit. A separate time-limited trial of the full feature set is planned and will be announced when it
+is available.
 
 **When can I buy Stream Connector?**
-Stream Connector is not yet available for purchase. The pricing on this page is final; its store
-listings and activation are still being finalized, and availability will be announced at launch.
+Not yet. Its store listings and activation are still being finalized, and availability will be
+announced at launch.
 
 **How do I get support?**
 Pro subscribers receive priority Discord support with a guaranteed response SLA. Lifetime holders
