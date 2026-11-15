@@ -101,6 +101,15 @@ a:hover { text-decoration: underline; }
 }
 .site-footer a { color: var(--text-dim); }
 .footer-links { display: flex; gap: 18px; flex-wrap: wrap; margin-left: auto; }
+.footer-more {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  width: 100%;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+.footer-more .footer-label { color: var(--text-faint); }
 
 /* ---------- Landing ---------- */
 .hero { padding: 84px 0 48px; text-align: center; }

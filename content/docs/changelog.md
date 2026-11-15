@@ -3,6 +3,7 @@ Full version history for Stream Connector. Newest releases first.
 > Offline-safe, no telemetry, no cloud. The app's Changelog button opens this page.
 
 ## v7.6.0
+* **Heads up:** Older chains that list Intiface devices but never saved an Intiface on/off setting now count as switched on, so they drive those devices when the chain runs as well as from live touches. Turn Intiface off on the chain if you don't want that.
 * **Feature:** VRChat current avatar startup probe. The app now uses OSCQuery on startup to automatically ask VRChat which avatar you are currently wearing. You no longer need to manually change your avatar to get the app to recognize it on a fresh start.
 * **Feature:** Interface visual overhaul. Buttons across the main toolbar, chain editor, and control panels have been significantly upgraded to use crisp icons and a cleaner layout.
 * **Feature:** Collapsible chain groups. You can now click the chevron arrow on any group header in your chain library to easily hide or show those chains.
@@ -10,11 +11,26 @@ Full version history for Stream Connector. Newest releases first.
 * **Feature:** A "Check for Updates" button in the Support tab. The app has always checked once a day on its own, quietly. Now you can ask it whenever you like, and it tells you either way instead of only speaking up when there is news.
 * **Improvement:** Better automatic OSC port handling. The app now explicitly logs that taking its own automatic port leaves VRChat's default port free for other OSC apps. If the app fails to bind a listen port, it will now directly warn you if another app might already be holding it.
 * **Improvement:** Added a dedicated "Clear Queue" toolbar button that will empty all pending queued items and immediately stop any chain that is currently running.
+* **Improvement:** The activity console now keeps the newest 2,000 lines. It used to grow for as long as the app ran.
+* **Improvement:** Warnings now show up in the log on release builds. Some were filed as debug messages and never appeared.
+* **Improvement:** Updated to Python 3.15, and refreshed the bundled libraries to pick up their security fixes.
 * **Bugfix:** Fixed standalone chain evaluation logic. Chains utilizing an OwO vest or Intiface will now correctly evaluate as standalone and bypass avatar step requirements even if PiShock is configured but disabled.
 * **Bugfix:** Text truncation on the new animated buttons now correctly calculates based on the actual available window width instead of a hardcoded character limit, preventing the title text from overflowing the button bounds.
 * **Bugfix:** In the chain editor, switching Intiface to Pattern mode drew the explanation line straight across the step table, hiding a step behind it. The caption now sits above the table.
 * **Bugfix:** Deleting steps from a pattern could strand the panel. The scrollbar kept the length of the longer list, so you were left staring at empty space with no way back to the top. This hit the PiShock, Intiface and OwO pattern builders and the OSC parameter picker in Steps. All four now keep up when a list gets shorter.
 * **Bugfix:** Random chains that only drive external hardware devices (like GiggleTech or DG-LAB) without any avatar parameter steps will now properly execute instead of being skipped.
+* **Bugfix:** An avatar parameter that sent a broken number (NaN or infinity) could drive your toys at full strength. The app now ignores those values.
+* **Bugfix:** Random chains never actually ran: the step that picks and starts them failed every time. They run now, and random OwO patterns now play.
+* **Bugfix:** Switching Intiface off on a chain didn't stop live touches from driving Intiface. It does now.
+* **Bugfix:** After you changed avatars, chains held for your previous avatar could keep responding to touches on the new one. Every avatar change now starts fresh, so only the new avatar's chains respond.
+* **Bugfix:** The TikFinity action list didn't match your live chains. It missed global chains saved under another avatar, listed chains you'd switched off, and ran random chains in step order. It now lists exactly the chains that are live.
+* **Bugfix:** Saved controls your avatar no longer has are now removed when the avatar loads. VRChat's live parameter list decides, so nothing is removed while VRChat is closed or wearing a different avatar. Controls you add with "Add OSC Control" from this version on are always kept.
+* **Bugfix:** Avatar snapshots were never saved, so "Save Avatar Snapshot" did nothing and parameter resets had nothing to restore. The app now saves a snapshot every time your avatar changes. Gift chains and Twitch rows are only created when you press the button.
+* **Bugfix:** On startup the app didn't reload the avatar you used last, because it looked for an old settings file that no longer exists. It reads your saved settings now.
+* **Bugfix:** On some PCs, VRChat discovery picked up the wrong network address, so the startup avatar check failed. It now uses the address VRChat gives for OSCQuery.
+* **Bugfix:** A toy that disconnected from Intiface Central stayed listed as connected until the app reconnected, and kept getting commands and battery checks. It now drops off straight away and shows as offline.
+
+Questions or feedback? Come hang out on [Discord](https://discord.com/invite/3vbJCKcPtJ) or in the [VRChat group](https://vrc.group/THEVIX.6475). You can support the work on [Ko-fi](https://ko-fi.com/vixenlicous) or [Throne](https://throne.com/vixenlicious), and find more of my work on [Gumroad](https://vixenlicous.gumroad.com/), [VixenToolBox](https://vixencreations.github.io/VixenToolBox/), [Latex Ultra](https://vixenlicous.gumroad.com/l/latex-ultra) and [VixForge Toon](https://vixenlicous.gumroad.com/l/vixforge-toon). Follow along on [X](https://x.com/VixForge) and [YouTube](https://www.youtube.com/@vixenlicious).
 
 ## v7.5.0
 

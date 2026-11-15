@@ -49,6 +49,7 @@ export default function RootLayout({ children }) {
               <Link href="/docs">Docs</Link>
               <Link href="/docs/roadmap">Roadmap</Link>
               <a href={SITE.links.wiki} target="_blank" rel="noopener noreferrer">Wiki</a>
+              <a href={SITE.links.discord} target="_blank" rel="noopener noreferrer">Discord</a>
               <a href={SITE.links.vrchat} target="_blank" rel="noopener noreferrer">VRChat</a>
               <a href={SITE.links.repo} target="_blank" rel="noopener noreferrer">GitHub</a>
               <a href={SITE.links.kofi} className="cta" target="_blank" rel="noopener noreferrer">Support</a>
@@ -67,8 +68,12 @@ export default function RootLayout({ children }) {
               <Link href="/docs/terms-of-service">Terms</Link>
               <Link href="/docs/privacy-policy">Privacy</Link>
               <a href={SITE.links.wiki} target="_blank" rel="noopener noreferrer">Wiki</a>
-              <a href={SITE.links.vrchat} target="_blank" rel="noopener noreferrer">VRChat Group</a>
-              <a href={SITE.links.kofi} target="_blank" rel="noopener noreferrer">Ko-fi</a>
+            </div>
+            <div className="footer-more">
+              <span className="footer-label">More from Vixenlicious</span>
+              {SITE.more.map(([key, label]) => (
+                <a key={key} href={SITE.links[key]} target="_blank" rel="noopener noreferrer">{label}</a>
+              ))}
             </div>
           </div>
         </footer>
