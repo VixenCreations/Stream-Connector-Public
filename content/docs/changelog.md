@@ -4,6 +4,7 @@ Full version history for Stream Connector. Newest releases first.
 
 ## v7.6.0
 * **Heads up:** Older chains that list Intiface devices but never saved an Intiface on/off setting now count as switched on, so they drive those devices when the chain runs as well as from live touches. Turn Intiface off on the chain if you don't want that.
+* **Heads up:** The PiShock Emergency Stop no longer closes the app. It now stops every PiShock device straight away and clears the PiShock queue. Before, its stop signal never reached your devices and it only closed the app, so a command that was already running kept going until its time ran out.
 * **Feature:** VRChat current avatar startup probe. The app now uses OSCQuery on startup to automatically ask VRChat which avatar you are currently wearing. You no longer need to manually change your avatar to get the app to recognize it on a fresh start.
 * **Feature:** Interface visual overhaul. Buttons across the main toolbar, chain editor, and control panels have been significantly upgraded to use crisp icons and a cleaner layout.
 * **Feature:** Collapsible chain groups. You can now click the chevron arrow on any group header in your chain library to easily hide or show those chains.
@@ -29,6 +30,20 @@ Full version history for Stream Connector. Newest releases first.
 * **Bugfix:** On startup the app didn't reload the avatar you used last, because it looked for an old settings file that no longer exists. It reads your saved settings now.
 * **Bugfix:** On some PCs, VRChat discovery picked up the wrong network address, so the startup avatar check failed. It now uses the address VRChat gives for OSCQuery.
 * **Bugfix:** A toy that disconnected from Intiface Central stayed listed as connected until the app reconnected, and kept getting commands and battery checks. It now drops off straight away and shows as offline.
+* **Bugfix:** If someone shared their shockers with you, your own shockers vanished from the PiShock device list every time the app connected. Both now stay listed.
+* **Bugfix:** Commands for shockers shared with you went out as if you owned them. They now go out through the share.
+* **Bugfix:** A failed PiShock device lookup could wipe your saved device list. The app now keeps your list until a lookup fully succeeds.
+* **Bugfix:** PiShock could freeze for up to 15 seconds while it retried a shared-device lookup.
+* **Bugfix:** The Refresh Devices button on the PiShock toolbar did nothing. It refreshes your devices now.
+* **Bugfix:** When a PiShock request failed, your PiShock API key could end up in the app's log. It's hidden now.
+* **Bugfix:** Each time the PiShock connection dropped, the app waited longer before reconnecting, and after a few drops it waited a full minute every time. It's back to about 10 seconds once a connection has worked.
+* **Bugfix:** OwO patterns played on the wrong muscles, because the pattern builder and the vest number the muscles differently. Each step now plays where you put it.
+* **Bugfix:** The strength you set for each muscle in an OwO pattern step was ignored, and a step set to intensity 1 played at full strength. Both now play as set.
+* **Bugfix:** Some OwO sensation files played on the wrong muscles, and some ran far longer than written. This hit the files that didn't fit in the list the app sends to the OwO app when it connects. They now play as written.
+* **Bugfix:** A sensation file with an accented letter or symbol in its name (like é) could stop OwO from ever connecting, and one in a step's name stopped that file from playing. Both work now. The OwO app shows those characters as ?.
+* **Bugfix:** Clear Queue left OwO sensation files waiting in line, so they still played afterwards. It now drops them.
+* **Bugfix:** Clear Queue didn't stop an older-format OwO file partway through, so it kept playing its remaining parts. It stops now.
+* **Bugfix:** After Clear Queue, an OwO pattern step or an older-format file could keep the vest busy for its full length, so new touches and chains had to wait. Clear Queue now frees it straight away.
 
 Questions or feedback? Come hang out on [Discord](https://discord.com/invite/3vbJCKcPtJ) or in the [VRChat group](https://vrc.group/THEVIX.6475). You can support the work on [Ko-fi](https://ko-fi.com/vixenlicous) or [Throne](https://throne.com/vixenlicious), and find more of my work on [Gumroad](https://vixenlicous.gumroad.com/), [VixenToolBox](https://vixencreations.github.io/VixenToolBox/), [Latex Ultra](https://vixenlicous.gumroad.com/l/latex-ultra) and [VixForge Toon](https://vixenlicous.gumroad.com/l/vixforge-toon). Follow along on [X](https://x.com/VixForge) and [YouTube](https://www.youtube.com/@vixenlicious).
 
