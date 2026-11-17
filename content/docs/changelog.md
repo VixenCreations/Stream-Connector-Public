@@ -20,6 +20,10 @@ The new Rust version has its own progress page: [Rust Rewrite](/docs/rust-rewrit
 * **Bugfix:** Fixed standalone chain evaluation logic. Chains utilizing an OwO vest or Intiface will now correctly evaluate as standalone and bypass avatar step requirements even if PiShock is configured but disabled.
 * **Bugfix:** Text truncation on the new animated buttons now correctly calculates based on the actual available window width instead of a hardcoded character limit, preventing the title text from overflowing the button bounds.
 * **Bugfix:** In the chain editor, switching Intiface to Pattern mode drew the explanation line straight across the step table, hiding a step behind it. The caption now sits above the table.
+* **Bugfix:** Creating a new chain hit an error right after it saved, so the "Chain created" message never showed. It shows now.
+* **Bugfix:** A random chain with no step limit wouldn't save after you edited it. The Step Limit box showed "None" and saving failed. Gift chains showed "None" in some boxes too. Empty boxes now stay empty.
+* **Bugfix:** Saving a chain while PiShock or Intiface was offline, or before the device list had loaded, cleared the devices you'd picked for it. Devices the editor can't show you now stay as they were.
+* **Bugfix:** Saving a chain dropped any steps for parameters your current avatar doesn't have, like when you edit another avatar's chain. Those steps are kept now.
 * **Bugfix:** Deleting steps from a pattern could strand the panel. The scrollbar kept the length of the longer list, so you were left staring at empty space with no way back to the top. This hit the PiShock, Intiface and OwO pattern builders and the OSC parameter picker in Steps. All four now keep up when a list gets shorter.
 * **Bugfix:** Random chains that only drive external hardware devices (like GiggleTech or DG-LAB) without any avatar parameter steps will now properly execute instead of being skipped.
 * **Bugfix:** An avatar parameter that sent a broken number (NaN or infinity) could drive your toys at full strength. The app now ignores those values.

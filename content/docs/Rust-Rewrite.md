@@ -30,7 +30,7 @@ The new app reads the same `saved/app.db`, so your chains, controls and settings
 | Screen | Status | Notes |
 |---|---|---|
 | OSC Controls | Done | Your avatar's parameters, sending, the filter manager and Save Layout |
-| Chain Controls | In progress | Running chains, the on/off switch, delete and groups work. The chain editor, import and export are next |
+| Chain Controls | In progress | Running chains, the on/off switch, delete, groups and the chain editor work. Device settings in the editor, import and export are next |
 | OwO Controls | Test screen | For trying the vest and your sensation files |
 | Configuration | Not started | |
 | PiShock Controls | Not started | |
@@ -42,6 +42,8 @@ The new app reads the same `saved/app.db`, so your chains, controls and settings
 
 - The OSC Controls screen is done: your avatar's parameters, sending, the filter manager and Save Layout.
 - Chain Controls: the chain list with its groups, running a chain, the on/off switch, and delete. Chains run in the background, so a long chain doesn't freeze the window.
+- The chain editor: create and edit chains, with every trigger and the steps list. Device settings come to the editor as each device is hooked into the app. Until then it keeps whatever a chain already has saved for them.
+- Checking the editor against the current app turned up four bugs in its chain editor, including one that cleared a chain's PiShock or Intiface devices when you saved while they were offline. Those fixes are in [v7.6.0](/docs/changelog#v7-6-0).
 
 ### 2026-11-16
 
