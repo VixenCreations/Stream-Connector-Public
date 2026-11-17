@@ -10,6 +10,7 @@ const nextConfig = {
   basePath: isProd ? REPO_BASE : '',
   assetPrefix: isProd ? REPO_BASE : '',
   eslint: { ignoreDuringBuilds: true },
+  experimental: { agentUpgrade: 'security' },
 };
 
 export default nextConfig;
