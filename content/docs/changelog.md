@@ -2,6 +2,8 @@ Full version history for Stream Connector. Newest releases first.
 
 > Offline-safe, no telemetry, no cloud. The app's Changelog button opens this page.
 
+The new Rust version has its own progress page: [Rust Rewrite](/docs/rust-rewrite).
+
 ## v7.6.0
 * **Heads up:** Older chains that list Intiface devices but never saved an Intiface on/off setting now count as switched on, so they drive those devices when the chain runs as well as from live touches. Turn Intiface off on the chain if you don't want that.
 * **Heads up:** The PiShock Emergency Stop no longer closes the app. It now stops every PiShock device straight away and clears the PiShock queue. Before, its stop signal never reached your devices and it only closed the app, so a command that was already running kept going until its time ran out.
@@ -198,6 +200,64 @@ Questions or feedback? Come hang out on [Discord](https://discord.com/invite/3vb
 - **Dev:** OSC live step parsing classifies each step as numeric / bool / forced-int, detecting bool BEFORE normalization so bool params send a real boolean instead of a scaled float.
 - **Dev:** Source housekeeping - relocated ~1,900 inline code comments out of the main source file into the canonical developer_info.md (organized by class / function); behavior, string literals, and docstrings untouched.
 - **Dev:** Application version metadata bumped to 6.9.0 across the executable manifest and version info for clean Windows Explorer display.
+
+## v6.8.2
+
+_An internal build. These changes first reached a public release in v6.9.0._
+
+- **Bugfix:** Intiface could show fewer toys than you had connected, for example 2 of 3. Toys are now added one at a time as they connect, and the app asks Intiface again a few seconds after connecting.
+
+## v6.8.1
+
+_An internal build. These changes first reached a public release in v6.9.0._
+
+- **Bugfix:** A command could go to the wrong toy, or stop with an error, when the device list changed while a chain or an avatar change was running.
+- **Bugfix:** A live touch, a random chain or a manual control running next to a chain could switch a toy to the wrong motor, or back to plain vibrate. Each run now keeps its own motor choices.
+- **Bugfix:** Some avatar parameters went to VRChat as the wrong type of number, so VRChat ignored them. Unknown parameters now go as decimals, and on/off parameters as real true or false.
+
+## v6.8.0
+
+_An internal build. These changes first reached a public release in v6.9.0._
+
+- **Feature:** Every Buttplug command works now. Strokers like the Lovense Solace Pro get depth and position, and rotating toys get rotation, alongside vibrate, oscillate, constrict and inflate.
+- **Feature:** Two new Intiface modes: Stroke moves between two depths, and Rotate spins, with an option to switch direction.
+- **Feature:** Each Intiface device in a chain has its own mode and settings, and they all run at the same time.
+- **Feature:** A Rescan button for Intiface devices.
+- **Improvement:** The app saves your avatar's controls the first time it sees that avatar.
+- **Bugfix:** Strokers and rotating toys weren't recognized on newer Intiface Central versions.
+- **Bugfix:** Chains saved in Constrict, Stroke or Rotate mode went back to Vibrate when you opened them in the editor.
+- **Bugfix:** Filter Selected didn't take the rows out of the table.
+- **Bugfix:** Sending to some avatar parameters failed with "Param not writable" when VRChat's live parameter list wasn't ready. The app now falls back to your avatar file.
+
+## v6.7.0
+
+_An internal build. These changes first reached a public release in v6.9.0._
+
+- **Feature:** The first version of the SPS / OGB live touch trigger. A chain can follow touches on your avatar in real time, or fire once when a touch crosses a level you set.
+- **Feature:** Toys with more than one motor, like a Lovense Max, drive every motor you pick at once. Each motor gets its own checkbox.
+- **Improvement:** The app finds VRChat through OSCQuery first and remembers the ports VRChat reports. VRChat no longer logs a "new OSC service" from the app every few seconds.
+- **Improvement:** Logs moved from text files into a local database, with separate debug and release logs.
+
+## v6.6.0
+
+_An internal build. These changes first reached a public release in v6.9.0._
+
+- **Feature:** Buttplug v4 support for current Intiface Central, with an automatic fall back to v3 for older Intiface servers.
+- **Feature:** You can change the addresses and ports for OSC, Intiface, TikFinity, the webhook and Streamer.bot in `saved/config/routing/endpoints.json`.
+
+## v6.5.0
+
+_An internal build. These changes first reached a public release in v6.9.0._
+
+- **Bugfix:** Changing avatars in VRChat now loads the new avatar fully, the same way the app does at startup. Before, only the parameter list refreshed: the chain list stayed as it was, and parameters lost their auto-reset.
+
+## v6.4.1
+
+_An internal build. No release notes were kept for it._
+
+## v6.3.0
+
+_No release notes were kept for this version._
 
 ## v6.2.3
 
