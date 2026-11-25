@@ -39,6 +39,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
+        <div className="promo-banner">
+          <a href="https://www.lovense.com/r/2t6myx" target="_blank" rel="sponsored noopener">
+            <img border="0" width="728" height="90" alt="Lovense" src="https://cdn.lovense.com/UploadFiles/web/black-friday-2026/affiliate/phase2/toolkit-728x90.jpg?v=1288877560" />
+          </a>
+        </div>
         <header className="site-header">
           <div className="container">
             <Link href="/" className="brand">
