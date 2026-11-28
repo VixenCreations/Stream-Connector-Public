@@ -2,20 +2,28 @@
 
 Not at this time. The project is in active re-development and is not currently distributed as a
 public product. There is no public download or storefront listing. This documentation covers the
-current architecture and feature set while development continues.
+current feature set while development continues.
+
+---
+
+## How much does it cost?
+
+The Python app is free and fully unlocked, in both editions (Stream Connector and Haptics Nexus).
+There is no license key and no paid tier. The upcoming [Rust app](/docs/rust-rewrite) is the paid
+one; its prices are on the [Pricing](/docs/pricing) page.
 
 ---
 
 ## Does Stream Connector run in the cloud?
 
-No. Nothing runs in the cloud, nothing contacts a remote server on its own, and nothing listens on
-the public internet. Everything runs locally on your machine.
+No. Everything runs on your PC, and nothing listens on the public internet. The app only goes
+online for the services you set up (like PiShock), plus a small check once a day for a new version.
 
 ---
 
 ## Do I need to use every feature?
 
-No. Every system is modular. You can use any subset on its own:
+No. Each part works on its own. You can use any of these alone:
 
 - VRChat only
 - TikTok (through TikFinity) only
@@ -27,13 +35,11 @@ No. Every system is modular. You can use any subset on its own:
 - DG-LAB only
 - Any combination, up to everything at once
 
-Nothing forces you into a feature you do not want.
-
 ---
 
 ## Can I use only VRChat?
 
-Yes. OSC works standalone, with no TikTok or bot integration required.
+Yes. OSC works on its own, with no TikTok or bot integration required.
 
 ---
 
@@ -46,48 +52,47 @@ TikFinity up once and point it at Stream Connector. There is no separate TikTok 
 
 ## Can VRChat touch drive my devices?
 
-Yes. SPS / OGB contact parameters feed the live-touch engine. In-game touch drives your devices in
-real time (Intiface, OSC, PiShock, and the OwO vest at once), scaled to the live touch level, and
+Yes. SPS / OGB contact parameters drive your devices in real time (Intiface, OSC parameters,
+PiShock, GiggleTech, DG-LAB, and the OwO vest at once), scaled to the live touch level, and output
 stops when the touch ends.
 
 ---
 
 ## Is it safe to run?
 
-Yes, and more importantly it is predictable:
+Yes, and it's predictable:
 
-- Local-only execution
-- No inbound ports opened to the internet
+- Everything runs on your PC
+- No ports opened to the internet
 - No remote control
 - No telemetry
 - No background services
 - No silent updates
 
-Actions happen because you configured them to.
+Things happen because you set them up to.
 
 ---
 
-## Can it damage or modify my system?
+## Can it damage or change my PC?
 
-No. There are no kernel hooks, no driver installs, and no persistent system modifications. The
-worst realistic outcome is a misconfiguration that does not trigger as expected.
+No. There are no kernel hooks, no driver installs, and no changes to Windows. The worst realistic
+outcome is a setting that doesn't trigger the way you expected.
 
-The engine is also built with rate limits, cooldowns, safety gates, and hard execution caps to keep
-behavior controlled.
+Device output is rate-limited, and PiShock shocks on live touch are held to a fixed safety limit.
 
 ---
 
 ## Where does my data go?
 
-It stays on your machine. All state lives inside the application's own folder:
+It stays on your PC, in the app's own folder:
 
 ```
 Stream Connector/
 └── saved/
+    ├── app.db
     ├── config/
-    ├── controls/
-    ├── logs/
-    └── userdata/
+    └── controls/
 ```
 
-Removing that folder resets the application to a clean state.
+`app.db` holds your settings, controls, chains, and logs. Delete the `saved/` folder and the app
+starts fresh. The [File Structure](/docs/file-structure) page has the details.

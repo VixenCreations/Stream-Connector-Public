@@ -4,15 +4,15 @@ import { SITE } from '@/lib/site.mjs';
 const FEATURES = [
   {
     title: 'TikTok Live',
-    text: 'Respond to follows, gifts, likes, subscriptions, and comments, delivered through TikFinity. Event-driven and deterministic, with immediate execution.',
+    text: 'Run chains on gifts and on the stream\'s diamond total, delivered through TikFinity, with filters for gift value, gifter level, and subscribers or moderators.',
   },
   {
-    title: 'Chain Logic Engine',
-    text: 'Compose multi-step automations with delays, conditions, and branching in a visual editor. Define exactly what runs and when.',
+    title: 'Chains',
+    text: 'Build multi-step automations with delays, random order, and priority queueing in the chain editor. You decide exactly what runs and when.',
   },
   {
     title: 'VRChat OSC',
-    text: 'Live avatar parameter discovery and drift-free state tracking through OSCQuery, with no ghost values or desync.',
+    text: 'Finds VRChat and your avatar\'s parameters on its own through OSCQuery, and reloads your controls when you change avatars.',
   },
   {
     title: 'SPS / OGB Live-Touch',
@@ -20,15 +20,15 @@ const FEATURES = [
   },
   {
     title: 'Intiface / Bluetooth Devices',
-    text: 'Full Buttplug command surface: vibrate, oscillate, constrict, inflate, linear depth, and rotation. Protocol v4 with automatic v3 fallback.',
+    text: 'Vibrate, oscillate, constrict, inflate, linear depth, and rotation, with per-motor control and patterns. Buttplug v4 with automatic v3 fallback.',
   },
   {
     title: 'PiShock',
-    text: 'Realtime WebSocket v2 support for shock, vibrate, and beep across owned or shared devices, gated and rate-limited by design.',
+    text: 'Shock, vibrate, and beep, built-in modes, and your own patterns, across owned or shared devices, all rate-limited.',
   },
   {
     title: 'OwO Haptics',
-    text: 'Full vest control with pattern playback, visualizer sync, multi-device coordination, and continuous live-touch playback.',
+    text: 'Play your sensation files or build your own muscle patterns, plus continuous live-touch playback.',
   },
   {
     title: 'GiggleTech',
@@ -36,7 +36,7 @@ const FEATURES = [
   },
   {
     title: 'DG-LAB Coyote',
-    text: 'DG-LAB Coyote V3 on both channels, paired by QR code, with per-step strength and frequency and the device\'s own limits always respected.',
+    text: 'DG-LAB Coyote V3 over Bluetooth, on both channels, with strength and frequency per chain and a strength limit the app never goes above.',
   },
   {
     title: 'Streamer.bot + External API',
@@ -52,9 +52,9 @@ export default function HomePage() {
           <span className="eyebrow">In active re-development</span>
           <h1>{SITE.tagline}</h1>
           <p className="sub">
-            A purpose-built, GUI-powered interactivity engine for streamers and avatar creators.
-            It unifies live events, VRChat avatars, and connected hardware into a single, reactive
-            logic pipeline, and it runs entirely on your machine.
+            An interactivity app for streamers and avatar creators. It ties live events, VRChat
+            avatars, and connected hardware together through chains you build, and it runs entirely
+            on your PC.
           </p>
           <div className="hero-actions">
             <Link href="/docs" className="btn primary">Read the Docs</Link>
@@ -68,7 +68,7 @@ export default function HomePage() {
         <div className="container">
           <div className="section-head">
             <h2>Everything, unified</h2>
-            <p>One reactive engine that connects live events, avatars, and hardware through a single logic pipeline.</p>
+            <p>One app that connects live events, avatars, and hardware through the chains you build.</p>
           </div>
           <div className="grid">
             {FEATURES.map((f) => (
@@ -90,15 +90,15 @@ export default function HomePage() {
           <div className="grid">
             <Link href="/docs/home" className="card">
               <h3>What it is</h3>
-              <p>A modular, event-driven engine designed around explicit, repeatable behavior.</p>
+              <p>One app built around explicit, repeatable behavior.</p>
             </Link>
             <Link href="/docs/features" className="card">
               <h3>Full feature list</h3>
-              <p>Every supported system and integration, documented in one place.</p>
+              <p>Every supported device and integration, documented in one place.</p>
             </Link>
             <Link href="/docs/additional-uses" className="card">
               <h3>Beyond streaming</h3>
-              <p>Advanced and non-streaming use cases the engine makes possible.</p>
+              <p>Other ways people use it, beyond streaming.</p>
             </Link>
           </div>
 
@@ -107,7 +107,7 @@ export default function HomePage() {
             <p>
               Stream Connector is currently being rebuilt and is not offered as a public product at
               this time. There is no public download or storefront listing. This site documents the
-              current architecture and feature set while development continues. The public
+              current feature set while development continues. The public
               re-release and what is landing next are tracked on the roadmap.
             </p>
             <div className="hero-actions">

@@ -19,9 +19,9 @@
 1. Extract the application folder to any location you choose.
 2. Run `Stream Connector.exe`.
 3. Approve the one-time Windows Firewall prompt if it appears, so the application can use its local OSC and WebSocket connections.
-4. Let the application initialize its `saved/` folders on first run.
+4. Let the application create its `saved/` folder on first run.
 
-Stream Connector runs as a standard user and does not request administrator rights. The only system
+Stream Connector runs as a standard user and does not request administrator rights. The only Windows
 prompt you may see on first launch is the Windows Firewall dialog for local network access. No
 account, login, or activation step is required.
 
@@ -29,9 +29,8 @@ account, login, or activation step is required.
 
 ## Initial configuration
 
-1. Open the dropdown menu in the top left.
-2. Select **Configuration**.
-3. Set only the integrations you intend to use.
+1. Click **Configuration** in the sidebar.
+2. Set only the integrations you intend to use.
 
 Optional settings include:
 

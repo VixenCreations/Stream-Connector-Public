@@ -1,4 +1,4 @@
-**Last Updated:** 07-07-2026 &nbsp;•&nbsp; **Licensor:** VixForge Interactive
+**Last Updated:** 11-27-2026 &nbsp;•&nbsp; **Licensor:** VixForge Interactive
 
 This page covers **licensing** for the two editions of the software and the End User License
 Agreement (EULA) that governs them. For pricing and tiers see the [Pricing](/docs/pricing) page; for
@@ -11,19 +11,22 @@ is handled see the [Privacy Policy](/docs/privacy-policy).
 
 ---
 
-## Two editions, one license model
+## Two editions, two apps
 
-The software ships in two editions built from the same engine - **Stream Connector** (the full
-toolkit) and **VixForge Haptics Nexus** (the haptics-focused edition). Both are **paid products under
-the same single-user license model**, each with a feature-limited **Free Tier** plus paid **Pro** and
-**Lifetime** tiers (see [Pricing](/docs/pricing)).
+The software ships in two editions built from the same code - **Stream Connector** (the full
+toolkit) and **VixForge Haptics Nexus** (the haptics-focused edition) - and comes as two apps:
 
-- A paid license requires a one-time activation (a purchase email + license key), after which the
-  software runs locally like everything else.
-- The two editions are **licensed and billed separately**; a license for one does not cover the other.
-- The EULA below governs both editions.
+- **The Python app** (the current one) is **free of charge and fully unlocked** in both editions. It
+  needs no purchase, no license key, and no activation.
+- **The Rust app** (upcoming) is the paid one. Each edition has a feature-limited **Free Tier** plus
+  paid **Pro** and **Lifetime** tiers (see [Pricing](/docs/pricing)). A paid license needs a one-time
+  activation (a purchase email + license key), after which the app runs locally like everything else.
+  The two editions are **licensed and billed separately**; a license for one does not cover the other.
 
-> **Stream Connector is not yet available for purchase.** Its store listings and activation are still
+The EULA below governs both apps and both editions. The parts about payment, license keys,
+activation, and refunds apply only to the paid Rust app.
+
+> **The Rust app is not yet available for purchase.** Its store listings and activation are still
 > being finalized, so its pricing and paid tiers are **provisional and subject to change at release**
 > (see [Pricing](/docs/pricing)).
 
@@ -34,18 +37,18 @@ Either way, the software runs on your machine, under your control.
 ## End User License Agreement
 
 This Agreement is between you and **VixForge Interactive** ("Licensor", "we", "us", or "our") and
-covers the paid **Stream Connector** and **VixForge Haptics Nexus** editions (each, the "Digital
-Product" or "Software").
+covers the **Stream Connector** and **VixForge Haptics Nexus** editions of the free Python app and of
+the paid Rust app (each, the "Digital Product" or "Software").
 
 ### 1. License Grant & Permitted Use
 
-Subject to your payment of the applicable fee and your compliance with this Agreement, Licensor
+Subject to your payment of any applicable fee (the Python app has none) and your compliance with this Agreement, Licensor
 grants you a non-exclusive, non-transferable, non-sublicensable, revocable, **single-user license**
 to download, install, activate, and use the Digital Product solely for your own personal or
 individual professional use, subject to the restrictions below. All rights not expressly granted are
 reserved by Licensor.
 
-### 2. License Key & Activation
+### 2. License Key & Activation (Rust app)
 
 - Your purchase provides a **license key** tied to your **purchase email**. Activation validates both
   against our store. Your key and email are stored **locally on your machine**, in the app's own
@@ -104,7 +107,8 @@ partial, in your possession.
 
 If something isn't working, **please contact us before opening a dispute or chargeback** - most
 issues are quick to resolve. Reach out through the **Gumroad product page** where you purchased the
-Software (use its contact/messaging option), or via VixForge Interactive's listed social handles.
+Software (use its contact/messaging option), through our [Discord](https://discord.com/invite/3vbJCKcPtJ),
+or via VixForge Interactive's listed social handles.
 
 ---
 

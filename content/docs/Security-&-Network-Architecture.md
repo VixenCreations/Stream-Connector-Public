@@ -1,11 +1,11 @@
-This page documents every part of Stream Connector's network surface. If the application uses a
-port or makes an outbound connection, it is listed here. Features you do not use stay inactive.
+This page lists every port and connection Stream Connector uses. If the app opens a port or makes an
+outbound connection, it's listed here. Features you don't use stay off.
 
 ---
 
-## Configuration source of truth
+## Where the settings live
 
-Networking settings are local, user-owned, and editable. There is no cloud dashboard and no remote
+Network settings are local and yours to edit. There is no cloud dashboard and no remote
 configuration.
 
 ```
@@ -13,24 +13,19 @@ saved/config/routing/
   └── endpoints.json        (ports, hosts, and related network settings)
 ```
 
-If you change ports, change them here; otherwise the defaults apply. Services bind to `127.0.0.1`
-unless explicitly configured otherwise.
+If you change ports, change them here; otherwise the defaults apply. Local services bind to
+`127.0.0.1`.
 
 ---
 
-## OwO vest (local hardware, Bluetooth)
+## OwO vest (your local network)
 
-The OwO vest control path is hardware communication, not internet traffic.
+The vest pairs with the **OwO app** on your PC or phone. Stream Connector sends sensations to that
+app; it never talks to the vest directly.
 
-- Pairs to the vest through the operating system's Bluetooth stack
-- Sends commands through BLE characteristics
-- Uses deterministic dispatch (busy locks and rate limiting)
-- Never opens internet-facing listeners
-
-### Visualizer path (optional)
-
-If you enable a visualizer layer, it remains local and configurable. Depending on the visualizer
-tool it may use UDP or HTTP, but the binding stays on `127.0.0.1`.
+- Finds the OwO app with a broadcast on your local network
+- Sends sensations over UDP, port `54020`
+- Opens no internet-facing listener
 
 ---
 
@@ -44,35 +39,37 @@ GiggleTech units are driven directly, with no vendor router in between.
 
 ---
 
-## DG-LAB Coyote (outbound relay)
+## DG-LAB Coyote (Bluetooth)
 
-The DG-LAB Coyote pairs and receives commands through the vendor's relay, which is how the device is
-designed to work.
+By default the Coyote connects straight to your PC over Bluetooth.
+
+- Bluetooth LE only, nothing over the internet
+- Each channel has a strength limit, and the app never goes above it
+
+### Relay mode (optional)
+
+If you switch DG-LAB to relay mode, the app connects through the vendor's relay instead.
 
 - Outbound secure WebSocket to the DG-LAB relay
 - Pairing is a QR code you scan in the DG-LAB phone app
-- The device's own strength limits are read back and always respected
 
 ---
 
 ## Internal API (127.0.0.1:8832)
 
-This is the application's internal control surface, used by the app to communicate with itself.
+The app's own control surface, used by the app and by local tools.
 
-- Chain execution
-- UI actions
-- Internal orchestration
-
-It is not publicly exposed and is not remotely routable.
+- Lists and runs chains and avatar parameters
+- Not reachable from other machines
 
 ---
 
 ## External API (127.0.0.1:8840)
 
-This is the surface for developer tooling and controlled triggers, on the same machine.
+The surface for your own scripts and tools, on the same machine.
 
 - Local-only binding
-- Strict payload validation
+- Checks every request for a provider and a command
 - No remote access by default
 
 Exposing it beyond localhost is not part of the default configuration. See the
@@ -80,31 +77,43 @@ Exposing it beyond localhost is not part of the default configuration. See the
 
 ---
 
-## PiShock networking (outbound only)
+## PiShock (outbound only)
 
-PiShock is a brokered platform, so it requires internet access:
+PiShock is a brokered platform, so it needs internet access:
 
 - Outbound secure WebSocket (WSS) to the broker for real-time commands
-- Outbound HTTPS for account and device discovery
+- Outbound HTTPS for account and device lookups
 - No inbound ports opened on your machine
 
 ---
 
-## Safety and failure behavior
+## Update check (outbound)
 
-- Global execution locks
-- Busy-state enforcement
-- Rate limiting and cooldowns
-- Hard stop paths
-- Reconnect with backoff rather than tight retry loops
-- Fail-closed behavior: if state cannot be validated, execution stops
+Once a day, and whenever you ask it to check, the app downloads a small `version.json` file from this site to see whether a new
+version is out. It sends nothing about you or your setup, and it never downloads or installs
+anything else.
+
+---
+
+## License check
+
+The free Python app makes no license calls, in either edition. The paid Rust app will check your
+license with the Gumroad license API when you activate it, then from time to time after that.
+
+---
+
+## Safety
+
+- One chain runs at a time, in priority order
+- Device output is rate-limited
+- Hard stops: Clear Queue and the PiShock Emergency Stop
+- Reconnects wait longer after each failure instead of retrying in a tight loop
+- A setting the app can't read never drives a device
 
 ---
 
 ## Summary
 
-Stream Connector is local-first and explicit by design:
-
-- No inbound internet exposure
-- An auditable, documented network surface
+- Nothing is exposed to the internet
+- Every connection is listed on this page
 - No hidden listeners or background connections

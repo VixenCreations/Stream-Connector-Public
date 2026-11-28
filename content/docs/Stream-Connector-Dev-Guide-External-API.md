@@ -7,7 +7,7 @@ There are two local servers:
 | API | Base URL | Purpose |
 | --- | --- | --- |
 | External API | `http://127.0.0.1:8840` | Trigger registered hooks (such as chains) from external tools |
-| Internal / Features API | `http://127.0.0.1:8832` | Enumerate and execute the app's actions and avatar parameters |
+| Internal / Features API | `http://127.0.0.1:8832` | List and run the app's actions and avatar parameters |
 
 Ports are configurable in `saved/config/routing/endpoints.json`. The values above are the defaults.
 
@@ -35,7 +35,7 @@ Returns metadata about the API.
   "data": {
     "name": "Stream Connector External API",
     "author": "@Vixenlicious",
-    "version": "6.9.0"
+    "version": "7.6.0"
   }
 }
 ```
@@ -148,7 +148,7 @@ parameters directly.
 ### `GET /api/app/info`
 
 ```json
-{ "data": { "author": "@VixForge Interactive", "name": "Stream Connector", "version": "6.9.0" } }
+{ "data": { "author": "@VixForge Interactive", "name": "Stream Connector", "version": "7.6.0" } }
 ```
 
 ### `GET /api/features/categories`
@@ -207,4 +207,4 @@ the status code.
 - All servers bind to `127.0.0.1` and are not exposed beyond the local machine by default
 - `context` is treated as data only; it is never evaluated or executed
 - Unknown providers or command IDs are rejected and logged
-- Execution is dispatched asynchronously, so triggering a hook does not block the caller
+- Hooks run in the background, so triggering one does not block the caller

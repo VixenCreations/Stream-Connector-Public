@@ -7,6 +7,9 @@ The new Rust version has its own progress page: [Rust Rewrite](/docs/rust-rewrit
 ## v7.6.0
 * **Heads up:** Older chains that list Intiface devices but never saved an Intiface on/off setting now count as switched on, so they drive those devices when the chain runs as well as from live touches. Turn Intiface off on the chain if you don't want that.
 * **Heads up:** The PiShock Emergency Stop no longer closes the app. It now stops every PiShock device straight away and clears the PiShock queue. Before, its stop signal never reached your devices and it only closed the app, so a command that was already running kept going until its time ran out.
+* **Heads up:** Intiface patterns now play as written. Each step runs at the strength in its box and waits its Delay. Before, a normal chain run played every step above 1% at full power and skipped the delays. Check your Intiface patterns after you update.
+* **Heads up:** PiShock pattern steps set to Oscillation now move by their Wave value. Before, they moved by their position in the list. Check those steps after you update.
+* **Heads up:** VixForge Haptics Nexus is now free and fully unlocked. The License button and the Free tier device picker are gone, and the app no longer checks a license online. A license key you saved before stays on your PC, unused.
 * **Feature:** VRChat current avatar startup probe. The app now uses OSCQuery on startup to automatically ask VRChat which avatar you are currently wearing. You no longer need to manually change your avatar to get the app to recognize it on a fresh start.
 * **Feature:** Interface visual overhaul. Buttons across the main toolbar, chain editor, and control panels have been significantly upgraded to use crisp icons and a cleaner layout.
 * **Feature:** Collapsible chain groups. You can now click the chevron arrow on any group header in your chain library to easily hide or show those chains.
@@ -17,7 +20,7 @@ The new Rust version has its own progress page: [Rust Rewrite](/docs/rust-rewrit
 * **Improvement:** The activity console now keeps the newest 2,000 lines. It used to grow for as long as the app ran.
 * **Improvement:** Warnings now show up in the log on release builds. Some were filed as debug messages and never appeared.
 * **Improvement:** Updated to Python 3.15, and refreshed the bundled libraries to pick up their security fixes.
-* **Bugfix:** Fixed standalone chain evaluation logic. Chains utilizing an OwO vest or Intiface will now correctly evaluate as standalone and bypass avatar step requirements even if PiShock is configured but disabled.
+* **Bugfix:** Fixed standalone chain evaluation logic. Chains using an OwO vest or Intiface will now correctly evaluate as standalone and bypass avatar step requirements even if PiShock is configured but disabled.
 * **Bugfix:** Text truncation on the new animated buttons now correctly calculates based on the actual available window width instead of a hardcoded character limit, preventing the title text from overflowing the button bounds.
 * **Bugfix:** In the chain editor, switching Intiface to Pattern mode drew the explanation line straight across the step table, hiding a step behind it. The caption now sits above the table.
 * **Bugfix:** Creating a new chain hit an error right after it saved, so the "Chain created" message never showed. It shows now.
@@ -25,7 +28,7 @@ The new Rust version has its own progress page: [Rust Rewrite](/docs/rust-rewrit
 * **Bugfix:** Saving a chain while PiShock or Intiface was offline, or before the device list had loaded, cleared the devices you'd picked for it. Devices the editor can't show you now stay as they were.
 * **Bugfix:** Saving a chain dropped any steps for parameters your current avatar doesn't have, like when you edit another avatar's chain. Those steps are kept now.
 * **Bugfix:** Deleting steps from a pattern could strand the panel. The scrollbar kept the length of the longer list, so you were left staring at empty space with no way back to the top. This hit the PiShock, Intiface and OwO pattern builders and the OSC parameter picker in Steps. All four now keep up when a list gets shorter.
-* **Bugfix:** Random chains that only drive external hardware devices (like GiggleTech or DG-LAB) without any avatar parameter steps will now properly execute instead of being skipped.
+* **Bugfix:** Random chains that only drive external hardware devices (like GiggleTech or DG-LAB) without any avatar parameter steps now run instead of being skipped.
 * **Bugfix:** An avatar parameter that sent a broken number (NaN or infinity) could drive your toys at full strength. The app now ignores those values.
 * **Bugfix:** Random chains never actually ran: the step that picks and starts them failed every time. They run now, and random OwO patterns now play.
 * **Bugfix:** Switching Intiface off on a chain didn't stop live touches from driving Intiface. It does now.
@@ -50,6 +53,20 @@ The new Rust version has its own progress page: [Rust Rewrite](/docs/rust-rewrit
 * **Bugfix:** Clear Queue left OwO sensation files waiting in line, so they still played afterwards. It now drops them.
 * **Bugfix:** Clear Queue didn't stop an older-format OwO file partway through, so it kept playing its remaining parts. It stops now.
 * **Bugfix:** After Clear Queue, an OwO pattern step or an older-format file could keep the vest busy for its full length, so new touches and chains had to wait. Clear Queue now frees it straight away.
+* **Bugfix:** Edits in a chain's PiShock, Intiface or OwO pattern table were lost unless you pressed Save Pattern. Saving the chain now keeps them.
+* **Bugfix:** If a chain save failed and you then undid a pattern edit, the edit you undid was saved anyway. It isn't now.
+* **Bugfix:** Reopening a chain showed every Intiface pattern step at 75%, and changing any box then saved every step at 75%. Steps now keep their strength.
+* **Bugfix:** If one saved chain had something the app couldn't read, all of that avatar's chains vanished from the list, and creating or importing a chain then deleted them. The app now skips only the part it can't read, and it never saves over chains it couldn't read.
+* **Bugfix:** The chain editor couldn't open some imported or older chains, like one with an on/off setting saved as text. It opens them now. If the editor ever fails to open, it closes cleanly instead of leaving a stuck window.
+* **Bugfix:** A setting the app couldn't read in an imported chain, like a broken strength, could run a device at full power or stop the chain. Unreadable strengths now count as 0, and unreadable times use their defaults.
+* **Bugfix:** A negative chain Delay stopped the chain after its first step. It now counts as 0.
+* **Bugfix:** Several chains with the same priority firing at the same moment, like a gift combo, could lose all but the first. They all queue now.
+* **Bugfix:** Clear Queue didn't stop a chain while it waited out a long step Delay, so new chains had to wait too. It stops right away now.
+* **Bugfix:** The Disconnect button in the DG-LAB relay pairing window didn't disconnect. It does now, and Connect works again afterwards.
+* **Bugfix:** Imported chains kept the avatar that exported them, so chains with avatar steps never ran and their switch and Delete didn't work. They now belong to the avatar you import them into.
+* **Bugfix:** Importing chains dropped their PiShock devices when the devices were shared with you or your PiShock username wasn't set. They're kept now.
+* **Bugfix:** One chain without a name in an import file failed the whole import. The app now skips it. A file that isn't a chain list says so, and a name that appears twice in one file is only added once.
+* **Bugfix:** Saving a chain dropped GiggleTech units that weren't in your device list, like a renamed unit. They're kept now.
 
 Questions or feedback? Come hang out on [Discord](https://discord.com/invite/3vbJCKcPtJ) or in the [VRChat group](https://vrc.group/THEVIX.6475). You can support the work on [Ko-fi](https://ko-fi.com/vixenlicous) or [Throne](https://throne.com/vixenlicious), and find more of my work on [Gumroad](https://vixenlicous.gumroad.com/), [VixenToolBox](https://vixencreations.github.io/VixenToolBox/), [Latex Ultra](https://vixenlicous.gumroad.com/l/latex-ultra) and [VixForge Toon](https://vixenlicous.gumroad.com/l/vixforge-toon). Follow along on [X](https://x.com/VixForge) and [YouTube](https://www.youtube.com/@vixenlicious).
 
@@ -732,8 +749,8 @@ _No release notes were kept for this version._
 - **New:** Deferred TikFinity registry cache reads and writes until after OSC parameters are loaded via load_registry_cache() and save_registry_cache().
 - **New:** Added re_register_all_tikfinity_actions() helper to hot-reload TikFinity actions and prevent duplicate registrations.
 - **New:** Integrated Gumroad license verification with GUMROAD_VERIFY_URL, SUPPORTER_PRODUCT_ID, and FREE_POPUP_URL constants.
-- **New:** Implemented _check_license_valid() to validate license key (read from /saved/config/user.json) against Gumroad’s API using requests.
-- **New:** On startup, display a “Free Version” popup when no valid license is found, featuring “Buy Supporter License” and “Continue (Free)” options.
+- **New:** Implemented _check_license_valid() to validate license key (read from /saved/config/user.json) against Gumroad's API using requests.
+- **New:** On startup, display a "Free Version" popup when no valid license is found, featuring "Buy Supporter License" and "Continue (Free)" options.
 - **New:** Extended edit_config() to include a License Key field, persisting it alongside TikTok and PiShock settings.
 - **Fix:** Eliminated premature register_action() calls and config persistence by deferring both until after full initialization.
 - **Internal:** Adjusted edit_config() window layout to accommodate the new License Key entry.
@@ -771,7 +788,7 @@ _No release notes were kept for this version._
 
 - **New:** Fuzzy name matching for Hyroe gift auto-registration - mismatched casing or slight variations now resolve to the correct giftMapping entry, so icons and coinCosts display properly.
 - **New:** Fallback delays for unspecified gifts in HYROE_GIFTS (defaults to 6 s) and explicit filtering of holiday specials (Ghost, Pumpkin) to prevent unwanted chains.
-- **Fix:** `_auto_register_assets` now ensures `_gift_mapping` is loaded before use, eliminating silent failures when giftMapping wasn’t initialized.
+- **Fix:** `_auto_register_assets` now ensures `_gift_mapping` is loaded before use, eliminating silent failures when giftMapping wasn't initialized.
 - **New:** INT-series injection only resets on the final step (::#N), avoiding redundant resets during the chain.
 - **Fix:** Robust avatar JSON path resolution in `_on_avatar_change` - handles both legacy string entries and new-style dicts without KeyError.
 - **Fix:** `send_shock_ws` now pauses all non-PUBLISH operations during a PUBLISH to avoid being flagged as malicious by the PiShock broker.
@@ -786,9 +803,9 @@ _No release notes were kept for this version._
 - **Fix:** AttributeErrors on capture-timeout (_finalize_capture / _save_avatar_snapshot) resolved - timers now target valid methods.
 - **New:** Debounced /avatar/change (1 s) + rolling-buffer pre-fill; capture finalises idempotently and marks avatar ready.
 - **New:** Burst-safe OSC sender - repeated hits refresh the same reset timer, so chat-spam maps cleanly in-game; INT-series unchanged.
-- **Fix:** ‘after_id’ UnboundLocalError squashed when multiple INT-series parameters fire in quick succession.
+- **Fix:** 'after_id' UnboundLocalError squashed when multiple INT-series parameters fire in quick succession.
 - **API:** /api/features/actions/exec fully rewritten - always returns HTTP 200 with {"data":[]}, honours both "context" & legacy "data", sets CORS, and queues work on the Tk thread when alive.
-- **API:** Internal callback errors are logged but never bubble up, eliminating TikFinity’s 500-error flood and queue bloat.
+- **API:** Internal callback errors are logged but never bubble up, eliminating TikFinity's 500-error flood and queue bloat.
 - **UI:** Guard / API errors now emit a single, colour-coded log-line per incident instead of endless repeats.
 - **Security:** Flask handler no longer returns (Response,int) tuple - fixes NameError and adheres to WSGI expectations.
 
@@ -802,7 +819,7 @@ _No release notes were kept for this version._
 - **New:** Device discovery writes a de-duplicated list to saved/config/devices/devices.json and re-uses it on startup.
 - **Fix:** Pathing re-wired to global constants (USER_CFG_FILE, PISHOCK_DEVICE_FILE, etc.) eliminating hard-coded strings.
 - **UI:** Live PiShock event log shows success / error feedback with timestamps and coloured badges.
-- **Internal:** Queue heartbeat to GUI thread (‘connected’ / ‘disconnected’) so status LED never desynchronises.
+- **Internal:** Queue heartbeat to GUI thread ('connected' / 'disconnected') so status LED never desynchronises.
 - **API:** TLS context enforced on websockets.connect → prevents MITM/downgrade attacks and meets PiShock security guidance.
 
 ## v4.0.0
@@ -855,7 +872,7 @@ _No release notes were kept for this version._
 - **Add:** Chains can now load per avatar and execute in serial mode
 - **Fix:** UI crash on missing config folders
 - **Fix:** Avatar change no longer causes double-loading or layout overwrite
-- **Fix:** VRChat’s noisy parameters (Voice, VRMode, etc.) now ignored on capture
+- **Fix:** VRChat's noisy parameters (Voice, VRMode, etc.) now ignored on capture
 - **UI/UX:** Improved OSC status & avatar load feedback in status bar
 
 ## v3.7.0

@@ -1,4 +1,4 @@
-**Last Updated:** 07-07-2026 &nbsp;•&nbsp; **Provider:** VixForge Interactive
+**Last Updated:** 11-27-2026 &nbsp;•&nbsp; **Provider:** VixForge Interactive
 
 These Terms of Service ("Terms") govern your use of the **Stream Connector** and **VixForge Haptics
 Nexus** software and related documentation (together, the "Software"), provided by **VixForge
@@ -12,7 +12,7 @@ handled see the [Privacy Policy](/docs/privacy-policy).
 
 ## 1. The Software
 
-The Software is a locally-run interactivity engine for VRChat, streaming, and real-time device
+The Software is a locally-run interactivity app for VRChat, streaming, and real-time device
 control. It runs on your own machine and connects only to the services and devices you configure
 (for example VRChat OSC, Intiface / Bluetooth toys, PiShock, the OwO vest, Streamer.bot, and TikTok
 Live). It is a tool you operate; it is not a hosted service, and we do not run servers that store
@@ -27,9 +27,10 @@ using it is lawful where you are.
 ## 3. License
 
 Your right to use the Software is granted under the [Licensing](/docs/licensing) page - a single-user
-End User License Agreement that governs both the Stream Connector and VixForge Haptics Nexus editions,
-each with a feature-limited free tier and paid tiers (see [Pricing](/docs/pricing)). These Terms apply
-in addition to that license.
+End User License Agreement that governs both editions, Stream Connector and VixForge Haptics Nexus, in
+the free Python app and the paid Rust app. The Python app is free and fully unlocked; the Rust app has
+a feature-limited free tier and paid tiers (see [Pricing](/docs/pricing)). These Terms apply in
+addition to that license.
 
 ## 4. Acceptable Use
 
@@ -78,7 +79,7 @@ assume full responsibility for how you configure and operate the Software and an
 ## 8. Termination
 
 You may stop using the Software at any time. Your rights under these Terms end automatically if you
-breach them. For the paid edition, license termination is governed by the
+breach them. License termination is also governed by the
 [Licensing](/docs/licensing) page. Provisions that by their nature should survive termination
 (including Sections 6, 7, and 9) survive.
 

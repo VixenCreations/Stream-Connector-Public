@@ -23,6 +23,7 @@ The new app reads the same `saved/app.db`, so your chains, controls and settings
 | OwO vest | Built | Try it on the OwO Controls test screen. Not hooked into chains yet |
 | GiggleTech | Not started | |
 | DG-LAB Coyote V3 | Not started | |
+| Joystick TV | Built | New in the Rust app. Checked against a stand-in Joystick TV server. Streamers test it next |
 | TikFinity, Streamer.bot, local API, Discord, update check, license | Not started | |
 
 ### Screens
@@ -30,13 +31,26 @@ The new app reads the same `saved/app.db`, so your chains, controls and settings
 | Screen | Status | Notes |
 |---|---|---|
 | OSC Controls | Done | Your avatar's parameters, sending, the filter manager and Save Layout |
-| Chain Controls | In progress | Running chains, the on/off switch, delete, groups and the chain editor work. Device settings in the editor, import and export are next |
+| Chain Controls | Done | Running chains, the on/off switch, delete, groups, import, export, Clear Queue, and the chain editor with every device's settings and pattern tables |
 | OwO Controls | Test screen | For trying the vest and your sensation files |
+| Joystick TV | Built | Connect your channel, watch events come in, and send a test chat message |
 | Configuration | Not started | |
-| PiShock Controls | Not started | |
+| PiShock Controls | Done | Emergency Stop, claiming shared devices, refreshing devices, and a Test button for each device. It has its own login panel until the Configuration screen arrives |
 | Support | Not started | |
 
 ## Progress log
+
+### 2026-11-27
+
+- The chain editor's Intiface and OwO pages, and the pattern tables for PiShock, Intiface and OwO. Pattern edits save with the chain.
+- Checking the pattern tables against the current app turned up bugs in its pattern playback, including Intiface patterns that played every step at full power. Those fixes are in [v7.6.0](/docs/changelog#v7-6-0).
+
+### 2026-11-26
+
+- Joystick TV support, new in the Rust app. Sign in with your Joystick TV account, and tips, follows, subscriptions and chat commands can run your chains. A few streamers are testing it next.
+- Chain Controls: Import, Export and Clear Queue.
+- The PiShock Controls screen: Emergency Stop, claiming shared devices, refreshing devices, and a Test button for each device.
+- The chain editor's PiShock, GiggleTech and DG-LAB pages.
 
 ### 2026-11-17
 

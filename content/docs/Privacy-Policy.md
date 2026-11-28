@@ -1,4 +1,4 @@
-**Last Updated:** 07-07-2026 &nbsp;•&nbsp; **Provider:** VixForge Interactive
+**Last Updated:** 11-27-2026 &nbsp;•&nbsp; **Provider:** VixForge Interactive
 
 This Privacy Policy explains how the **Stream Connector** and **VixForge Haptics Nexus** software
 (the "Software"), provided by **VixForge Interactive** ("we", "us", or "our"), handles information.
@@ -39,18 +39,26 @@ You can delete this data at any time by removing the app's saved files or uninst
 
 ## 4. Limited outbound connections
 
-The Software makes network connections only for features you use:
+The Software makes network connections only for features you use, plus a daily update check:
 
-- **License verification (paid tiers only).** When you activate a paid license (either edition), the
-  Software contacts the **Gumroad** license API to validate your key at activation and periodically
-  afterward. It sends **only your license key and purchase email** for that check. This is the paid
-  tiers' single licensing call; it is not telemetry or analytics. Gumroad's handling of that request is
-  governed by [Gumroad's Privacy Policy](https://gumroad.com/privacy). The free tier makes no licensing
-  calls.
+- **Update check.** Once a day, and whenever you ask it to check, the Software downloads a small
+  `version.json` file from the Stream Connector website to see whether a new version is out. The
+  request carries no personal data, license details, or information about your setup, and the
+  Software never downloads or installs anything else on its own. The website is hosted on GitHub
+  Pages, so GitHub handles that request under the
+  [GitHub General Privacy Statement](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement).
+- **License verification (paid Rust app only).** When you activate a paid license for the Rust app
+  (either edition), the Software contacts the **Gumroad** license API to validate your key at
+  activation and periodically afterward. It sends **only your license key and purchase email** for
+  that check. This is the paid tiers' single licensing call; it is not telemetry or analytics.
+  Gumroad's handling of that request is governed by
+  [Gumroad's Privacy Policy](https://gumroad.com/privacy). The free Python app and the Rust app's Free
+  Tier make no licensing calls.
 - **Services and devices you configure.** When you enable them, the Software connects locally or over
-  the network to VRChat (OSC / OSCQuery), Intiface Central, PiShock, the OwO vest, Streamer.bot, and
-  TikTok Live. These connections are made **at your direction**, and each service's own privacy policy
-  governs the data exchanged with it. We do not receive that data.
+  the network to VRChat (OSC / OSCQuery), Intiface Central, PiShock, the OwO app, GiggleTech units, the
+  DG-LAB Coyote (over Bluetooth, or through the DG-LAB relay if you choose relay mode), Streamer.bot,
+  and TikFinity (for TikTok Live). These connections are made **at your direction**, and each
+  service's own privacy policy governs the data exchanged with it. We do not receive that data.
 
 ## 5. Discord Rich Presence
 

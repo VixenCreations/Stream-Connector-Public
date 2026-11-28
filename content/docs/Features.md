@@ -1,73 +1,59 @@
-This page summarizes what Stream Connector actually does. Each system below is modular and can be
-used on its own or combined with the others through the chain engine.
+This page sums up what Stream Connector does. Use any part on its own, or tie them together with
+chains.
 
 ---
 
-## TikTok integration
+## TikTok
 
 TikTok events reach Stream Connector through **TikFinity**, which handles the connection to your
 live stream. Set TikFinity up once and point it at the app.
 
-- Live response to follows, gifts, likes, and comments
-- Immediate, event-driven execution
-- No artificial delays between event and action
+- Run a chain when someone sends a gift, with an optional gift count
+- Run a chain when the stream's diamond total passes a number you set
+- Filter gifts by diamond value, gifter level, and subscriber or moderator status
 
-If an event happens on stream, Stream Connector receives it and runs only the actions you have
-configured for it.
-
----
-
-## TikFinity engine
-
-The TikFinity engine is the event core of the application.
-
-- True event-driven execution
-- Reliable chaining under sustained load
-- State-aware logic
-- Deterministic, repeatable behavior
-
-It is designed so that the same input produces the same result every time.
+Events run their chains straight away, with nothing added in between.
 
 ---
 
 ## VRChat OSC
 
-- Live avatar parameter discovery
-- State tracking that does not drift
-- No stale or "ghost" values
-- No desynchronization between app and avatar
+- Finds VRChat and your avatar's parameters on its own (OSCQuery)
+- Sends and receives avatar parameters, with live values in the controls list
+- Noise filters keep fast-changing parameters from flooding the log
+- Reloads your avatar's controls when you change avatars
 
-If a parameter exists on the avatar, the engine can drive it cleanly and repeatably.
-
----
-
-## Chain logic system
-
-The chain engine is where individual actions become full automations.
-
-- Multi-step execution
-- Delays, conditions, and branching logic
-- A visual chain editor
-- Clear, explicit ordering
-
-You define what happens and in what order, rather than relying on implicit behavior.
+If a parameter exists on your avatar, a chain can drive it.
 
 ---
 
-## PiShock support
+## Chains
 
-- Realtime WebSocket v2
-- Shock, vibrate, and beep
+Chains are where single actions become full automations.
+
+- Run several steps in order, with a delay between them
+- Drive avatar parameters and every enabled device from one chain
+- Random chains pick their steps at random, with an optional step limit and repeat
+- Queue chains by priority, or run them straight away
+- Build and edit chains in the chain editor
+
+You decide what happens and in what order.
+
+---
+
+## PiShock
+
+- Realtime connection through PiShock's WebSocket v2 broker
+- Shock, vibrate, and beep, plus pulse, burst, oscillation, random wobble, and your own patterns
 - Owned or shared devices
-- Centralized control logic
 
-All output is gated and rate-limited, and nothing fires without explicit configuration.
+All output is rate-limited, and nothing fires unless a chain tells it to.
 
 ---
 
 ## Intiface and Bluetooth devices
 
-Stream Connector supports the full Buttplug command surface, not just basic vibration.
+Stream Connector supports far more than vibration.
 
 - Vibrate, oscillate, constrict, and inflate
 - Linear depth and stroking (including strokers such as the Lovense Solace Pro)
@@ -76,20 +62,21 @@ Stream Connector supports the full Buttplug command surface, not just basic vibr
 - Per-device mode, intensity, and duration in the chain editor
 - Per-device motor selection on multi-actuator toys: drive only the actuators you pick, all of them, or a random subset that re-rolls each trigger (Selected / All Motors / Random Motors)
 - A per-device Custom mode gives each motor its own waveform (vibrate, pulse, oscillation, constrict, ...) and its own intensity, all running at once
-- Buttplug v4 protocol, with automatic v3 fallback for older Intiface servers
+- Patterns: a list of steps, each with its own actuator, strength, length, and delay
+- Buttplug v4, with automatic v3 fallback for older Intiface servers
 - Live battery readout and on-demand device rescan
 
-Each command is routed to the correct actuator based on the device's reported capabilities.
+Each command goes to the right actuator, based on what the device says it can do.
 
 ---
 
 ## OwO haptics
 
-- Full device control
-- Pattern playback
-- Visualizer synchronization
-- Multi-device coordination
+- Play your `.owo` sensation files
+- Build your own patterns: pick the muscles, strength, frequency, and timing for each step
 - Continuous live-touch playback that re-queues for as long as a touch is held
+
+The app talks to the OwO app on your PC or phone, which drives the vest.
 
 ---
 
@@ -109,17 +96,18 @@ running.
 
 Support for the DG-LAB Coyote V3, on both channels.
 
-- Pair by scanning a QR code in the DG-LAB app
+- Connects over Bluetooth: switch the Coyote on, scan, and pick it
+- An optional relay mode pairs by scanning a QR code in the DG-LAB app instead
 - Both channels (A and B) are addressable independently
-- Strength and frequency are set per step, with waveform playback
-- The device reports its own strength limits and the app never exceeds them
+- Strength and frequency are set per chain, with waveform playback
+- Each channel has a strength limit, and the app never goes above it
 
 ---
 
 ## SPS / OGB live-touch
 
 VRChat reports where and how much an avatar is being touched through SPS / OGB contact parameters.
-Stream Connector converts that into live device output, in real time and scaled to the touch level.
+Stream Connector turns that into live device output, in real time and scaled to the touch level.
 
 - Output ramps with the touch and stops when the touch ends
 - Drives all enabled outputs at once: Intiface, OSC parameters, PiShock, GiggleTech, DG-LAB, and the OwO vest
@@ -162,37 +150,28 @@ from them.
   once when the value crosses, then re-arms)
 - Per-row deadzone and scale to shape how each parameter feels
 - Fans out to every enabled integration at once: Intiface, OSC parameters, PiShock, GiggleTech, DG-LAB, and the OwO vest
-- Watched parameters bypass the noise filters, so fast-changing values are never auto-muted
+- Watched parameters skip the noise filters, so fast-changing values are never auto-muted
 
 ---
 
 ## Privacy and intimate use
 
-Stream Connector is commonly used for private, high-control experiences, and it is built to support
-that responsibly:
+Stream Connector is often used for private, high-control experiences, and it's built for that:
 
-- Local-only execution
-- No cloud dependency
+- Everything runs on your PC
+- No cloud service needed
 - No data collection
-- No hidden behavior
+- Nothing happens that you didn't set up
 
-Every action is deliberate and reversible, and output stops as soon as you stop it or the
-triggering condition ends.
+Output stops as soon as you stop it or the triggering condition ends.
 
 ---
 
 ## External API
 
 - Native Streamer.bot integration
-- A local HTTP API for external scripts and tools
-- Event-driven, webhook-style triggering
+- A local HTTP API for your own scripts and tools
+- Trigger any chain by name
 
 See the [External API guide](/docs/stream-connector-dev-guide-external-api) and the
 [Streamer.bot guide](/docs/stream-connector-dev-guide-streamer-bot) for full integration details.
-
----
-
-## Design goals
-
-Stream Connector prioritizes control, precision, reliability, and ownership. Behavior is explicit,
-state is local, and the system does only what you configure it to do.

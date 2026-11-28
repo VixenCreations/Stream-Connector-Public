@@ -166,21 +166,22 @@ example from the trigger's variables), and they flow through to Stream Connector
 
 ## Supported event types
 
-The `type` field selects a parser. The standard integration uses `external_hook`; the following
-typed events are also recognized and normalized before execution:
+The `type` field selects a parser. The standard integration uses `external_hook`; these `type`
+values are also recognized:
 
-| Event type | Typical fields |
+| `type` | Typical fields |
 | --- | --- |
 | `external_hook` | `provider`, `commandId`, `context` |
-| Twitch chat | `user`, `message` |
-| Twitch subscription | `user`, `tier`, `months`, `is_gift` |
-| Twitch cheer | `user`, `bits` |
-| OBS events | `scene` |
-| Timer / button | `timer`, `button` |
+| `twitch_chat` | `user`, `message` |
+| `twitch_sub` | `user`, `tier`, `months`, `is_gift` |
+| `twitch_cheer` | `user`, `bits` |
+| `obs_scene` | `scene` |
+| `timer` | `timer` |
+| `button` | `button` |
 
 ---
 
-## Execution flow
+## How a trigger reaches a chain
 
 ```
 Streamer.bot action
@@ -206,6 +207,6 @@ Chain runs
 ## Behavior and safety
 
 - The WebSocket connection is local-only, with no inbound internet exposure
-- Only typed, validated payloads are executed; there is no arbitrary code execution
+- Only payloads with a known `type` run, and the app never runs code it receives
 - Malformed events are logged and ignored rather than guessed at
 - Reconnection uses backoff and avoids duplicate subscriptions

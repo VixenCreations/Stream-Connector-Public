@@ -1,16 +1,17 @@
-**Last Updated:** 07-07-2026 &nbsp;•&nbsp; **Provider:** VixForge Interactive
+**Last Updated:** 11-27-2026 &nbsp;•&nbsp; **Provider:** VixForge Interactive
 
-This Service Level Agreement (SLA) defines the support and service commitments for **Stream Connector**
-and **VixForge Haptics Nexus**. Each app is licensed independently; the terms below apply per-app and
-per-account. For pricing and tiers see the [Pricing](/docs/pricing) page; for the license grant see
-the [Licensing](/docs/licensing) page.
+This Service Level Agreement (SLA) defines the support and service commitments for the paid Rust app,
+in both its editions, **Stream Connector** and **VixForge Haptics Nexus**. Each edition is licensed
+independently; the terms below apply per edition and per account. The free Python app gets community
+support, as described for the Free Tier below. For pricing and tiers see the [Pricing](/docs/pricing)
+page; for the license grant see the [Licensing](/docs/licensing) page.
 
 > **This SLA is provisional and subject to change at release.** It is published alongside a pricing
-> model that is not yet final, and Stream Connector is not yet available for purchase. Support tiers,
+> model that is not yet final, and the Rust app is not yet available for purchase. Support tiers,
 > response targets, and remedies may be adjusted before launch. The version in effect at the time of
 > your purchase is authoritative.
 
-> **Local-first by design.** Both apps run entirely on your own machine. There is no hosted backend
+> **Local-first by design.** Both editions run entirely on your own machine. There is no hosted backend
 > that stores your data or runs your setup, so this SLA does **not** promise uptime for a cloud service
 > you do not depend on. Instead, it covers the two things we actually operate - **license validation**
 > and **update distribution** - plus our **support responsiveness**.
@@ -39,8 +40,9 @@ the [Licensing](/docs/licensing) page.
 
 ## Support tiers and channels
 
-- **Free Tier** - community forum and public Discord channels. No guaranteed response times.
-- **Pro (monthly or annual)** - priority Discord support and email Vixenlicious@outlook.com, with the
+- **Free Tier and the free Python app** - community forum and public Discord channels. No guaranteed
+  response times.
+- **Pro Monthly** - priority Discord support and email Vixenlicious@outlook.com, with the
   guaranteed initial-response targets below.
 - **Lifetime** - email Vixenlicious@outlook.com plus on-call escalation for critical incidents, with the
   elevated targets below.
@@ -137,7 +139,7 @@ an incident.
   severity, and reproduction steps.
 - **Lifetime:** email Vixenlicious@outlook.com with "ON-CALL ESCALATION" in the subject for critical
   incidents; include license details and incident data.
-- **Free:** community forum and public Discord channels.
+- **Free Tier and the Python app:** community forum and public Discord channels.
 
 ---
 

@@ -22,12 +22,12 @@ why it is benign in this project.
 
 ## 2. Security posture
 
-- **Local-first execution.** The engine runs entirely on the user's machine.
+- **Runs locally.** Everything runs on the user's machine.
 - **No telemetry.** No usage data, analytics, or crash reporting is transmitted.
 - **No inbound exposure.** Local servers bind to `127.0.0.1`; nothing is reachable from outside the machine by default.
 - **No elevation.** The application manifest requests `asInvoker`, so it runs with standard user privileges and does not request administrator rights.
 - **No persistence.** No registry Run keys, scheduled tasks, services, or startup entries are created.
-- **Fails closed.** If state cannot be validated, execution stops rather than continuing in an unknown state.
+- **Fails safe.** A setting the app cannot read never drives a device, and a saved chain list it cannot read is never saved over.
 
 ---
 
@@ -35,13 +35,13 @@ why it is benign in this project.
 
 | Property | Value |
 | --- | --- |
-| Language / runtime | Python 3.13 |
+| Language / runtime | Python 3.15 |
 | Packager | PyInstaller 6.22 (one-file, windowed) |
 | Compression | UPX disabled (no executable packing) |
 | Code signing | Self-signed development certificate (not a trusted CA, see section 5.2) |
 | Privilege level | `asInvoker` (no elevation) |
 | UI | Tkinter desktop GUI |
-| Primary dependencies | Flask, requests, aiohttp, websockets, websocket-client, python-osc, zeroconf, Pillow, pypresence |
+| Primary dependencies | Flask, requests, aiohttp, websockets, websocket-client, python-osc, zeroconf, Pillow, pypresence, bleak (Bluetooth) |
 | Not present | No `cryptography`, no `pythonnet` / .NET, no filesystem watcher, no auto-updater |
 
 The single-file build unpacks its bundled runtime to a temporary directory (`%TEMP%`) on launch and
@@ -62,7 +62,11 @@ heuristic detections (see section 5.1).
 | Streamer.bot / TikFinity | Local | WebSocket | Event ingestion |
 | GiggleTech | Local network | UDP to the unit's IP (default port `8888`) | Motor commands, sent straight to the hardware |
 | PiShock | Outbound | WSS + HTTPS to PiShock broker | Real-time device commands (brokered platform) |
-| DG-LAB Coyote | Outbound | WSS to the DG-LAB relay | Pairing and device commands (relayed platform) |
+| OwO | Local network | UDP to the OwO app on port `54020`, found with a LAN broadcast | Haptic sensations |
+| DG-LAB Coyote | Local | Bluetooth LE to the device | Device commands (the default) |
+| DG-LAB relay (optional) | Outbound | WSS to the DG-LAB relay | Pairing and device commands, only in relay mode |
+| Update check | Outbound | HTTPS request for `version.json` on this site, once a day | New-version notice |
+| Discord Rich Presence | Local | Discord's local IPC pipe | Optional profile status |
 
 Every endpoint is documented in [Network Architecture](/docs/security-network-architecture) and is
 configurable in `saved/config/routing/endpoints.json`.
@@ -100,10 +104,10 @@ applications routinely receive; they are false positives in this context.
 
 ### 5.4 Multiple local network listeners and WebSocket clients
 
-- **Behavior:** The application binds local HTTP servers (Flask on `8832` and `8840`), opens UDP sockets for OSC and for GiggleTech units on the LAN, and maintains WebSocket connections to Intiface, Streamer.bot, TikFinity, the PiShock broker, and the DG-LAB relay.
+- **Behavior:** The application binds local HTTP servers (Flask on `8832` and `8840`), opens UDP sockets for OSC, for GiggleTech units on the LAN and for the OwO app, talks to the DG-LAB Coyote over Bluetooth, and maintains WebSocket connections to Intiface, Streamer.bot, TikFinity, the PiShock broker, and (in relay mode only) the DG-LAB relay.
 - **Typical verdicts:** Heuristics for software that listens on sockets and maintains multiple persistent connections.
 - **Technique class:** Application-layer and non-application-layer protocols (T1071, T1095).
-- **Why it is benign:** All servers bind to `127.0.0.1` and are not reachable from outside the machine. The clients connect only to services the user has configured: local device bridges, LAN hardware they entered the address of, and two remote device platforms that cannot be driven any other way.
+- **Why it is benign:** All servers bind to `127.0.0.1` and are not reachable from outside the machine. The clients connect only to services the user has configured: local device bridges, LAN hardware they entered the address of, and PiShock (plus the DG-LAB relay in relay mode), which cannot be driven any other way.
 
 ### 5.5 mDNS / zeroconf service advertising and discovery
 
@@ -114,10 +118,10 @@ applications routinely receive; they are false positives in this context.
 
 ### 5.6 Outbound encrypted connections
 
-- **Behavior:** The application opens outbound TLS connections: secure WebSocket (WSS) and HTTPS to the PiShock broker, WSS to the DG-LAB relay, and HTTPS to the license service and the version-check file on this site.
+- **Behavior:** The application opens outbound TLS connections: secure WebSocket (WSS) and HTTPS to the PiShock broker, WSS to the DG-LAB relay in relay mode, and HTTPS to the version-check file on this site.
 - **Typical verdicts:** Heuristics for encrypted command-and-control-style channels.
 - **Technique class:** Encrypted channel (T1573).
-- **Why it is benign:** Each connection goes to a documented service that the corresponding feature requires. PiShock is a brokered platform and cannot be driven without its broker. DG-LAB Coyote pairs and receives commands through its vendor relay by design. Nothing connects unless you have set that feature up.
+- **Why it is benign:** Each connection goes to a documented service that the corresponding feature requires. PiShock is a brokered platform and cannot be driven without its broker. The DG-LAB relay is used only if you choose relay mode; by default the Coyote connects over Bluetooth. Apart from the daily version check, nothing connects unless you have set that feature up.
 
 ### 5.7 Cryptographic hashing
 

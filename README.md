@@ -1,55 +1,59 @@
 # Stream Connector
 
-### The Ultimate Interactive Control Engine for TikFinity, Twitch, YouTube, Kick, TikTok, VRChat, and Shock Feedback
+### The Ultimate Interactive Control Engine
 
-**Stream Connector** is a purpose-built, GUI-powered platform for streamers and avatar creators who demand full control over event responses, PiShock devices, and real-time avatar logic.
+Live interactivity for VRChat, TikTok, Twitch, YouTube and Kick, with real haptics.
 
-Designed with creators in mind, it fuses modern Python capabilities, VRChat OSC, TikTok Live events, PiShock integration, and a powerful reactive chain engine.
+**Stream Connector** connects your stream and your avatar to real devices. Gifts, touches and custom
+triggers run chains you build, and those chains drive your avatar, PiShock, Intiface toys, the OwO
+vest, GiggleTech and the DG-LAB Coyote.
 
-#### Already Have the program? Nice! Get Started Here! [Visit the Wiki](https://github.com/VixenCreations/Stream-Connector-Public/wiki)
+Everything runs on your PC. No cloud, no telemetry.
+
+**Docs and changelog:** [the Stream Connector site](https://vixencreations.github.io/Stream-Connector-Public/)
+or [the wiki](https://github.com/VixenCreations/Stream-Connector-Public/wiki).
+
 ---
 
-## Features Summary
+## What it does
 
-### TikTok Live
-- Respond to likes, gifts, follows, subs, and comments.
-- Includes event chaining, intensity scaling, and manual triggers.
+### TikTok Live (through TikFinity)
+- Run a chain on a gift, with an optional gift count
+- Run a chain when the stream's diamond total passes a number you set
+- Filter gifts by diamond value, gifter level, and subscriber or moderator status
 
-### Chain Logic Engine
-- Build visual chain sequences with delay, timers, and mode mixing.
-- Chains support OSC, PiShock, custom events, and advanced fallback logic.
+### Twitch, YouTube and Kick (through Streamer.bot)
+- Any Streamer.bot action can run a chain by name
+- A local HTTP API lets your own scripts and tools do the same
 
-### VRChat OSC
-- Automatically discovers avatar parameters from JSON + live cache.
-- Supports override patterns, forced resets, and untouchable address protection.
+### VRChat
+- Finds your avatar's parameters on its own (OSCQuery)
+- Live touch: SPS / OGB contacts drive every enabled device in real time
+- Custom OSC triggers: any avatar or world parameter can drive your devices
 
-### PiShock Support
-- Realtime WebSocket v2 support
-- Custom pattern modes (licensed only: Bronze+ required)
-- Owned/shared device logic
+### Chains
+- Steps in order with delays, random chains, priority queueing
+- One chain can drive your avatar and every enabled device at once
 
-### Your Toys Your Rules (v6.3.0+)
-- Realtime WebSocket JSON v3 Shema support
-- Get Intimate nice and slow or Hard and Fast with Intiface
-- Control any connected bluetooth supported Scalar Actuator
-- "Came for the party, stayed for the kink"
+### Devices
+- **PiShock:** shock, vibrate, beep, built-in modes and your own patterns, owned or shared devices
+- **Intiface:** vibrate, oscillate, constrict, inflate, stroke and rotate, with per-motor control. Came for the party, stayed for the kink.
+- **OwO vest:** sensation files and your own muscle patterns
+- **GiggleTech:** straight over your network, no router needed
+- **DG-LAB Coyote V3:** over Bluetooth, both channels
 
-### Twitch, YouTube, Kick under 1 roof
-- Purpose Built Engine and API Handler for Streamer.bot
-- Purpose Built API for External Tools and Plugins
-- Supports live reload, diagnostics, and OSC injection
 ---
 
-## Join the Community
+## Join the community
 
+- [Discord](https://discord.com/invite/3vbJCKcPtJ)
 - [VRChat Group](https://vrchat.com/home/group/grp_10099934-42e2-4ab4-bd7e-007f0709be5d)
-- Buy Me A Coffee [Ko-fi](https://ko-fi.com/vixenlicous)
+- Buy me a coffee on [Ko-fi](https://ko-fi.com/vixenlicous)
 
-Your support powers continuous updates and new integrations.
+Your support keeps the updates coming.
 
 ---
 
-## Crafted by Vixenlicious
+## Made by Vixenlicious
 
-Built from the ground up to support anything you want to do with constant inovation.  
-Always evolving. Always yours.
+Built from the ground up, and always evolving.

@@ -1,81 +1,57 @@
-Stream Connector is built around a general-purpose control engine, so its usefulness extends well
-beyond stream alerts. This page covers some of the broader ways it is used.
+Stream Connector isn't only for stream alerts. This page covers some of the other ways people use it.
 
 ---
 
-## Advanced control
+## Slow, precise control
 
-Because every output runs through the same chain engine, you can build precise, repeatable behavior
-rather than one-off triggers:
+Every output runs through chains, so you can build exact, repeatable behaviour instead of one-off
+triggers:
 
-- Fine-grained intensity control
-- Slow, deliberate escalation over time
-- Timed sequences and releases
-- Fully scripted, multi-step behavior
-- Randomized logic that still stays within configured limits
+- Fine intensity control, per device and per step
+- Slow escalation with patterns and step delays
+- Timed sequences
+- Random chains that still stay inside the limits you set
 
-Nothing fires by accident, and every action is the result of an explicit configuration.
+Nothing fires unless a chain tells it to.
 
 ---
 
-## Built for reliability
+## Safeguards
 
-The engine includes safeguards that keep complex automations predictable:
-
-- Execution locks to prevent overlapping runs
-- Hard limits and execution caps
-- Device sanity checks
-- Anti-overlap enforcement
-- Emergency stop controls
-
-The goal is controlled, dependable behavior under load, not unpredictable output.
+- The chain queue runs one chain at a time, in priority order
+- Device output is rate-limited
+- PiShock shocks on live touch are held to a fixed safety limit
+- **Clear Queue** stops the running chain and drops everything waiting
+- The PiShock **Emergency Stop** stops every PiShock device straight away
 
 ---
 
 ## Personal and interactive use
 
-Stream Connector is also used for immersive and interactive personal setups, including
-expression-driven and power-dynamic experiences. The engine supports these the same way it supports
-everything else:
+Stream Connector is also used for private, interactive setups, including expression-driven and
+power-dynamic experiences. It handles these the same way as everything else:
 
-- Local-only execution
+- Everything runs on your PC
 - No data collection
-- No hidden behavior
-- Reversible, opt-in actions
-
-There is no single intended workflow; you configure the behavior you want.
+- Every action is opt-in, and you can stop it at any time
 
 ---
 
 ## VRChat avatar control
 
-Beyond simple toggles, the engine can manage avatar state in a structured way:
+Chains can drive your avatar as well as your devices:
 
 - Toggle clothing and accessories
-- Chain visual states and transitions
-- Prevent conflicting states
-- Keep transitions deterministic
-
-This turns an avatar from a static appearance into a reactive system.
+- Step through visual states in order, with delays between them
+- Reset parameters before or after a chain
+- Drive avatar parameters from touch or any OSC input
 
 ---
 
-## Multi-device orchestration
+## Several devices at once
 
-When several devices are connected, they can be coordinated as a group:
+When several devices are connected, one chain can drive them together:
 
-- Drive multiple devices at once
-- Shared and weighted device targeting
-- Group interaction logic
-- Synchronized, intentional output
-
----
-
-## Safety model
-
-Across all of these use cases, the same principles apply:
-
-- Nothing runs without configuration
-- Safety systems remain active
-- Behavior is explicit and reversible
-- You remain in control of every action
+- Drive every enabled device from one chain or one touch
+- Pick which devices each chain uses, or let it pick at random
+- Choose which motors run on multi-motor toys
